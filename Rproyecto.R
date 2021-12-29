@@ -27,7 +27,7 @@ diagrama_ira = barplot(tablaf_ira, main="Diagrama Episodios Semanales de Ira & F
 tablaf_miedo=table(datos_estudiantes$Episodios_por_semana_miedo)
 tablaf_miedo
 prop.table(tablaf_miedo)
-diagrama_miedo = barplot(tablaf_miedo, main="Diagrama Episodios Semanales de Miedo" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col="#69b3a2")
+diagrama_miedo = barplot(tablaf_miedo, main="Diagrama Episodios Semanales de Miedo" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5"),col="#69b3a2")
 
 #Episodios_por_semana_ansiedad
 tablaf_ansiedad=table(datos_estudiantes$Episodios_por_semana_ansiedad)
