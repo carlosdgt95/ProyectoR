@@ -1,6 +1,6 @@
 
 library(readxl)
-datos_estudiantes <- read_excel("datos_estudiantes.xlsx")
+datos_estudiantes <- read_excel("C:/Users/Carlos Gomez/Desktop/proyectoestadisticaGithut/ProyectoR/datos_estudiantes.xlsx")
 datos_estudiantes
 
 #cualitativas tablas
@@ -70,7 +70,7 @@ medidas
 
 #desviacion
 hist(peso, breaks = seq(from=peso1[1],to=peso1[2],by=ancho), include.lowest = T, right = F,
-     main="Histograma de frecuencias de Edad",ylab="Frecuencia absoluta",xlab="Peso")
+     main="Histograma de frecuencias de Peso",ylab="Frecuencia absoluta",xlab="Peso")
 #ojiva
 # Ojiva Peso
 q = c(0.05,0.12,0.55,0.75,0.95) ##datos para grafico
