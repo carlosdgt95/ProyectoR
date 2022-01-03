@@ -495,9 +495,9 @@ prom_carbh_com = datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida
 prom_carbh_com_rango = range(prom_carbh_com, na.rm = T)
 
 
-amplitud_prom_carbh_com = (prom_carbh_com_rango[2]- prom_carbh_com_rango[1])/7
+amplitud_prom_carbh_com = (prom_carbh_com_rango[2]- prom_carbh_com_rango[1])/k
 
-tabla=  table.freq(hist(prom_carbh_com, breaks = seq(prom_carbh_com_rango[1], to=prom_sem_ag_rango[2], by=amplitud_prom_carbh_com), include.lowest = T, right = F, plot = F))
+tabla=  table.freq(hist(prom_carbh_com, breaks = seq(prom_carbh_com_rango[1], to=prom_carbh_com_rango[2], by=amplitud_prom_carbh_com), include.lowest = T, right = F, plot = F))
 names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
                 "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
                 "Frecuencia acumulada relativa en %")
@@ -529,7 +529,7 @@ names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
 medidas
 
 #Histograma de la Porcentaje_promedio_carbohidrato_por_comida
-hist(prom_carbh_com, breaks = seq(from=prom_carbh_com[1],to=prom_carbh_com[2],by=amplitud_prom_carbh_com), include.lowest = T, right = F,
+hist(prom_carbh_com, breaks = seq(from=prom_carbh_com_rango[1],to=prom_carbh_com_rango[2],by=amplitud_prom_carbh_com), include.lowest = T, right = F,
      main="Histograma de Promedio de Carbohidrato por Comida",ylab="Frecuencia absoluta",xlab="Porcentaje de Carbohidratos")
 
 
