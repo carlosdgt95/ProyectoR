@@ -3,7 +3,7 @@
 
 library(readxl)
 library(agricolae)
-datos_estudiantes <- read_excel("C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx")
+datos_estudiantes <- read_excel("datos_estudiantes.xlsx")
 datos_estudiantes
 
 #cualitativas tablas
@@ -229,3 +229,246 @@ lines(quartil_icm, q, type="l", col="brown")
 #cajas de textos
 boxplot(icm, main="Diagrama de ICM",ylab="ICM")
 
+##############################################################
+#Frecuencia_semanal_actividad_fisica
+##############################################################
+
+
+#Sacamos la maxima y minima del conjunto de datos
+frenc_act_fis = datos_estudiantes$Frecuencia_semanal_actividad_fisica
+frenc_act_fis_rango = range(frenc_act_fis, na.rm = T)
+
+
+amplitud_frenc_act_fis = (frenc_act_fis_rango[2]- frenc_act_fis_rango[1])/7
+
+tabla=  table.freq(hist(frenc_act_fis, breaks = seq(from=frenc_act_fis_rango[1], to=frenc_act_fis_rango[2], by=amplitud_frenc_act_fis), include.lowest = T, right = F, plot = F))
+names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
+                "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
+                "Frecuencia acumulada relativa en %")
+tabla
+
+#Media de la Frecuencia_semanal_actividad_fisica
+media=mean(frenc_act_fis, na.rm = T)
+
+#Mediana de la Frecuencia_semanal_actividad_fisica
+mediana=median(frenc_act_fis, na.rm = T)
+
+#Desviacion de la Frecuencia_semanal_actividad_fisica
+desviacion=sd(frenc_act_fis, na.rm = T)
+
+#Cuartiles de la Frecuencia_semanal_actividad_fisica
+q1=quantile(frenc_act_fis,c(0.25), na.rm = T)[1]
+q2=quantile(frenc_act_fis,c(0.50), na.rm = T)[1]
+q3=quantile(frenc_act_fis,c(0.75), na.rm = T)[1]
+
+#Kurtosis de la Frecuencia_semanal_actividad_fisica
+curtosis=kurtosis(frenc_act_fis)
+
+#Sesgo de la Frecuencia_semanal_actividad_fisica
+sesgo=skewness(frenc_act_fis)
+
+medidas=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
+names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
+                 "Curtosis","Sesgo","Desviación Estándar")
+medidas
+
+#Histograma de la Frecuencia_semanal_actividad_fisica
+hist(frenc_act_fis, breaks = seq(from=frenc_act_fis_rango[1],to=frenc_act_fis_rango[2],by=amplitud_frenc_act_fis), include.lowest = T, right = F,
+     main="Histograma de Frecuencias de actividad fisica semanal",ylab="Frecuencia absoluta",xlab="Frecuencia actividad semanal")
+
+
+#ojiva
+# Ojiva de la Frecuencia_semanal_actividad_fisica
+q = c(0.05,0.12,0.55,0.75,0.95) ##datos para grafico
+quartil_frenc_act_fis = quantile(frenc_act_fis, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
+quartil_frenc_act_fis
+
+plot(quartil_frenc_act_fis, q, main = "Ojiva de la Frecuencia de actividad fisica semanal", xlab = "Puntaje", ylab = "Frecuencia Relativa")
+lines(quartil_frenc_act_fis, q, type="l", col="brown")
+
+#cajas de textos
+boxplot(frenc_act_fis, main="Diagrama de Frecuencia de actividad fisica semanal",ylab="Promedio actividad semanal")
+
+
+
+
+##############################################################
+#Consumo_semanal_promedio_gaseosas
+##############################################################
+
+
+#Sacamos la maxima y minima del conjunto de datos
+prom_gaseosa = datos_estudiantes$Consumo_semanal_promedio_gaseosas
+prom_gaseosa_rango = range(prom_gaseosa, na.rm = T)
+
+
+amplitud_gaseosa_rango = (prom_gaseosa_rango[2]- prom_gaseosa_rango[1])/7
+
+tabla=  table.freq(hist(prom_gaseosa, breaks = seq(from=prom_gaseosa_rango[1], to=prom_gaseosa_rango[2], by=amplitud_gaseosa_rango), include.lowest = T, right = F, plot = F))
+names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
+                "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
+                "Frecuencia acumulada relativa en %")
+tabla
+
+#Media del Consumo_semanal_promedio_gaseosas
+media=mean(prom_gaseosa, na.rm = T)
+
+#Mediana del Consumo_semanal_promedio_gaseosas
+mediana=median(prom_gaseosa, na.rm = T)
+
+#Desviacion del Consumo_semanal_promedio_gaseosas
+desviacion=sd(prom_gaseosa, na.rm = T)
+
+#Cuartiles del Consumo_semanal_promedio_gaseosas
+q1=quantile(prom_gaseosa,c(0.25), na.rm = T)[1]
+q2=quantile(prom_gaseosa,c(0.50), na.rm = T)[1]
+q3=quantile(prom_gaseosa,c(0.75), na.rm = T)[1]
+
+#Kurtosis del Consumo_semanal_promedio_gaseosas
+curtosis=kurtosis(prom_gaseosa)
+
+#Sesgo del Consumo_semanal_promedio_gaseosas
+sesgo=skewness(prom_gaseosa)
+
+medidas=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
+names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
+                 "Curtosis","Sesgo","Desviación Estándar")
+medidas
+
+#Histograma de Frecuencias del Consumo_semanal_promedio_gaseosas
+hist(prom_gaseosa, breaks = seq(from=prom_gaseosa_rango[1],to=prom_gaseosa_rango[2],by=amplitud_gaseosa_rango), include.lowest = T, right = F,
+     main="Histograma de frecuencias del Promedio de consumo semanal de gaseosa",ylab="Frecuencia absoluta",xlab="Promedio consumo semanal")
+
+
+#ojiva
+# Ojiva del Consumo_semanal_promedio_gaseosas
+q = c(0.05,0.12,0.55,0.75,0.95) ##datos para grafico
+quartil_prom_gaseosa = quantile(prom_gaseosa, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
+quartil_prom_gaseosa
+
+plot(quartil_prom_gaseosa, q, main = "Ojiva del Promedio de consumo semanal de gaseosa", xlab = "Puntaje", ylab = "Frecuencia Relativa")
+lines(quartil_prom_gaseosa, q, type="l", col="brown")
+
+#cajas de textos
+boxplot(prom_gaseosa, main="Diagrama del Promedio de consumo semanal de gaseosa",ylab="Promedio consumo semanal")
+
+##############################################################
+#Consumo_promedio_semanal_agua
+##############################################################
+
+
+#Sacamos la maxima y minima del conjunto de datos
+prom_sem_ag = datos_estudiantes$Consumo_promedio_semanal_agua
+prom_sem_ag_rango = range(prom_sem_ag, na.rm = T)
+
+
+amplitud_prom_sem_ag = (prom_sem_ag_rango[2]- prom_sem_ag_rango[1])/7
+
+tabla=  table.freq(hist(prom_sem_ag, breaks = seq(prom_sem_ag_rango[1], to=prom_sem_ag_rango[2], by=amplitud_prom_sem_ag), include.lowest = T, right = F, plot = F))
+names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
+                "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
+                "Frecuencia acumulada relativa en %")
+tabla
+
+#Media de la Consumo_promedio_semanal_agua
+media=mean(prom_sem_ag, na.rm = T)
+
+#Mediana de la Consumo_promedio_semanal_agua
+mediana=median(prom_sem_ag, na.rm = T)
+
+#Desviacion de la Consumo_promedio_semanal_agua
+desviacion=sd(prom_sem_ag, na.rm = T)
+
+#Cuartiles de la Consumo_promedio_semanal_agua
+q1=quantile(prom_sem_ag,c(0.25), na.rm = T)[1]
+q2=quantile(prom_sem_ag,c(0.50), na.rm = T)[1]
+q3=quantile(prom_sem_ag,c(0.75), na.rm = T)[1]
+
+#Kurtosis de la Consumo_promedio_semanal_agua
+curtosis=kurtosis(prom_sem_ag)
+
+#Sesgo de la Consumo_promedio_semanal_agua
+sesgo=skewness(prom_sem_ag)
+
+medidas=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
+names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
+                 "Curtosis","Sesgo","Desviación Estándar")
+medidas
+
+#Histograma de la Consumo_promedio_semanal_agua
+hist(prom_sem_ag, breaks = seq(from=prom_sem_ag[1],to=prom_sem_ag[2],by=amplitud_prom_sem_ag), include.lowest = T, right = F,
+     main="Histograma de Promedio de Consumo de Agua Semanalmente",ylab="Frecuencia absoluta",xlab="Promedio de Consumo de Agua Semanalmente")
+
+
+#ojiva
+# Ojiva de la Consumo_promedio_semanal_agua
+q = c(0.05,0.12,0.55,0.75,0.95) ##datos para grafico
+quartil_prom_sem_ag = quantile(prom_sem_ag, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
+quartil_prom_sem_ag
+
+plot(quartil_prom_sem_ag, q, main = "Ojiva del Promedio de Consumo de Agua Semanalmente", xlab = "Puntaje", ylab = "Frecuencia Relativa")
+lines(quartil_prom_sem_ag, q, type="l", col="brown")
+
+#cajas de textos
+boxplot(prom_sem_ag, main="Diagrama de Promedio de Consumo de Agua Semanalmente",ylab="Promedio de Agua Consumida en Litros")
+
+##############################################################
+#Consumo_promedio_carbohidrato_por_comida
+##############################################################
+
+
+#Sacamos la maxima y minima del conjunto de datos
+prom_carbh_com = datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida
+prom_carbh_com_rango = range(prom_carbh_com, na.rm = T)
+
+
+amplitud_prom_carbh_com = (prom_carbh_com_rango[2]- prom_carbh_com_rango[1])/7
+
+tabla=  table.freq(hist(prom_carbh_com, breaks = seq(prom_carbh_com_rango[1], to=prom_sem_ag_rango[2], by=amplitud_prom_carbh_com), include.lowest = T, right = F, plot = F))
+names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
+                "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
+                "Frecuencia acumulada relativa en %")
+tabla
+
+#Media de la Porcentaje_promedio_carbohidrato_por_comida
+media=mean(prom_carbh_com, na.rm = T)
+
+#Mediana de la Porcentaje_promedio_carbohidrato_por_comida
+mediana=median(prom_carbh_com, na.rm = T)
+
+#Desviacion de la Porcentaje_promedio_carbohidrato_por_comida
+desviacion=sd(prom_carbh_com, na.rm = T)
+
+#Cuartiles de la Porcentaje_promedio_carbohidrato_por_comida
+q1=quantile(prom_carbh_com,c(0.25), na.rm = T)[1]
+q2=quantile(prom_carbh_com,c(0.50), na.rm = T)[1]
+q3=quantile(prom_carbh_com,c(0.75), na.rm = T)[1]
+
+#Kurtosis de la Porcentaje_promedio_carbohidrato_por_comida
+curtosis=kurtosis(prom_carbh_com)
+
+#Sesgo de la Porcentaje_promedio_carbohidrato_por_comida
+sesgo=skewness(prom_carbh_com)
+
+medidas=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
+names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
+                 "Curtosis","Sesgo","Desviación Estándar")
+medidas
+
+#Histograma de la Porcentaje_promedio_carbohidrato_por_comida
+hist(prom_carbh_com, breaks = seq(from=prom_carbh_com[1],to=prom_carbh_com[2],by=amplitud_prom_carbh_com), include.lowest = T, right = F,
+     main="Histograma de Promedio de Carbohidrato por Comida",ylab="Frecuencia absoluta",xlab="Porcentaje de Carbohidratos")
+
+
+#ojiva
+# Ojiva de la Porcentaje_promedio_carbohidrato_por_comida
+q = c(0.05,0.12,0.55,0.75,0.95) ##datos para grafico
+quartil_prom_carbh_com = quantile(prom_carbh_com, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
+quartil_prom_carbh_com
+
+plot(quartil_prom_carbh_com, q, main = "Ojiva del porcentaje de carbohidratos por Comida", xlab = "Puntaje", ylab = "Frecuencia Relativa")
+lines(quartil_prom_carbh_com, q, type="l", col="brown")
+
+#cajas de textos
+boxplot(prom_carbh_com, main="Diagrama de Promedio de Consumo de Carbohidratos por Comida",ylab="
+        Porcentaje de Carbohidrato")
