@@ -3,43 +3,122 @@
 
 library(readxl)
 library(agricolae)
-datos_estudiantes <- read_excel("datos_estudiantes.xlsx")
+datos_estudiantes <- read_excel("C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx")
 datos_estudiantes
 
 #cualitativas tablas
+
+##############################
 #Sexo
+##############################
+
+#Tabla de frecuencia
 tablaf_sexo=table(datos_estudiantes$Sexo)
 tablaf_sexo
-prop.table(tablaf_sexo)
-diagrama_sexo = barplot(tablaf_sexo, main="Diagrama Sexo" , xlab="sexo",names.arg = c("M","F"),col=c( 'lightblue', 'pink'))
 
+#Tabla de frecuencia relativa
+tabla_freq_relativa_sexo = prop.table(tablaf_sexo)
+tabla_freq_relativa_sexo
+
+#Colores
+colores_diag_sexo = c('pink', 'lightblue')
+
+#Diagrama de barras
+diagrama_barras_sexo = barplot(tablaf_sexo, main="Diagrama Sexo" , xlab="sexo",names.arg = c("F", "M"),col=colores_diag_sexo)
+
+#Diagrama circular de Sexo
+etiqueta_diag_sexo = paste(round(tabla_freq_relativa_sexo*100, 2), '%', sep=' ')
+diagrama_circular_sexo = pie(tablaf_sexo, labels = etiqueta_diag_sexo, col = colores_diag_sexo, main = 'Diagrama de Sexo')
+legend('topleft', title = 'Sexo', c('Mujeres', 'Hombres'), cex=0.5, fill = colores_diag_sexo)
+
+
+#################################
 #Episodios_por_semana_estres
+#################################
 
+#Tabla de frecuencia
 tablaf_estres=table(datos_estudiantes$Episodios_por_semana_estres)
 tablaf_estres
-prop.table(tablaf_estres)
-diagrama_estres = barplot(tablaf_estres, main=" Diagrama Episodios Semanales de Estres" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col=c( '#F9E79F', '#F4D03F', '#B7950B', '#7D6608' ))
+
+#Tabla de frecuencia relativa
+tabla_freq_relativa_estres = prop.table(tablaf_estres)
+tabla_freq_relativa_estres
+
+#Diagrama de barras de Estres
+
+colores_diag_estres = c( '#F9E79F', '#F4D03F', '#B7950B', '#7D6608' )
+diagrama_estres = barplot(tablaf_estres, main=" Diagrama Episodios Semanales de Estres" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col=colores_diag_estres)
+
+#Diagrama circular de Estres
+etiqueta_diag_estres = paste(round(tabla_freq_relativa_estres*100, 2), '%', sep=' ')
+diagrama_circular_estres = pie(tablaf_estres, labels = etiqueta_diag_estres, col = colores_diag_estres, main = 'Diagrama de Estres')
+legend('topleft', title = 'Episodios de Estres', c("0-1","2-3","4-5","5+"), cex=0.5, fill = colores_diag_estres)
+
+
+#######################################
 #Episodios_por_semana_ira_frustacion
+#######################################
 
 tablaf_ira=table(datos_estudiantes$Episodios_por_semana_ira_frustacion)
 tablaf_ira
-prop.table(tablaf_estres)
-diagrama_ira = barplot(tablaf_ira, main="Diagrama Episodios Semanales de Ira & Frustracion" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col="#F9EF28")
 
+tabla_freq_relativa_ira = prop.table(tablaf_ira)
+tabla_freq_relativa_ira
+
+#Diagrama de barras de Ira
+colores_diag_ira = c('#F0E68C', '#FFF68F', '#EEE685', '#CDC673')
+diagrama_ira = barplot(tablaf_ira, main="Diagrama Episodios Semanales de Ira & Frustracion" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col=colores_diag_ira)
+
+#Diagrama circular de Ira
+etiqueta_diag_ira = paste(round(tabla_freq_relativa_ira*100, 2), '%', sep=' ')
+diagrama_circular_estres = pie(tablaf_estres, labels = etiqueta_diag_ira, col = colores_diag_ira, main = "Diagrama Episodios Semanales de Ira & Frustracion")
+legend('topleft', title = 'Episodios de Ira y Frustracion', c("0-1","2-3","4-5","5+"), cex=0.4, fill = colores_diag_ira)
+
+
+##############################
 #Episodios_por_semana_miedo
+##############################
+
 tablaf_miedo=table(datos_estudiantes$Episodios_por_semana_miedo)
 tablaf_miedo
-prop.table(tablaf_miedo)
-diagrama_miedo = barplot(tablaf_miedo, main="Diagrama Episodios Semanales de Miedo" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5"),col="#69b3a2")
 
+tabla_freq_relativa_miedo = prop.table(tablaf_miedo)
+tabla_freq_relativa_miedo
+
+colores_diag_miedo = c('#1bccb1', '#76e0d0', '#d1f5ef')
+diagrama_miedo = barplot(tablaf_miedo, main="Diagrama Episodios Semanales de Miedo" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5"),col=colores_diag_miedo)
+
+#Diagrama circular de Episodios de Miedo
+etiqueta_diag_miedo = paste(round(tabla_freq_relativa_miedo*100, 2), '%', sep=' ')
+diagrama_circular_estres = pie(tablaf_miedo, labels = etiqueta_diag_ira, col = colores_diag_miedo, main= 'Diagrama Episodios Semanales de Miedo')
+legend('bottomleft', title = 'Episodios de Miedo', c("0-1","2-3","4-5"), cex=0.5, fill = colores_diag_miedo)
+
+
+#################################
 #Episodios_por_semana_ansiedad
+#################################
+
 tablaf_ansiedad=table(datos_estudiantes$Episodios_por_semana_ansiedad)
 tablaf_ansiedad
-prop.table(tablaf_ansiedad)
-diagrama_ansiedad = barplot(tablaf_ansiedad , main="Diagrama Episodios Semanales de ansiedad" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col="#2ECC71")
+tabla_freq_relativa_ansiedad = prop.table(tablaf_ansiedad)
+tabla_freq_relativa_ansiedad
+
+colores_diag_ansiedad = c('#2ecc71', '#62d995', '#97e6b8', '#cbf2dc')
+diagrama_ansiedad = barplot(tablaf_ansiedad , main="Diagrama Episodios Semanales de ansiedad" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col=colores_diag_ansiedad)
+
+#Diagrama circular de Episodios de Ansiedad
+etiqueta_diag_ansiedad = paste(round(tabla_freq_relativa_ansiedad*100, 2), '%', sep=' ')
+diagrama_circular_estres = pie(tablaf_ansiedad, labels = etiqueta_diag_ansiedad, col = colores_diag_ansiedad, main= 'Diagrama Episodios Semanales de ansiedad')
+legend('topleft', title = 'Episodios de Ansiedad', c("0-1","2-3","4-5","5+"), cex=0.4, fill = colores_diag_ansiedad)
 
 
 ############## cuantitativas ##############
+
+#Calculamos el numero de intervalos para la tabla de frecuencias
+#Mediante la regla de Sturges
+
+k = round(1 + log(nrow(datos_estudiantes), 2))
+k
 
 ##############################################################
 #Peso
@@ -47,13 +126,11 @@ diagrama_ansiedad = barplot(tablaf_ansiedad , main="Diagrama Episodios Semanales
 
 #frecuencia
 peso=datos_estudiantes$Peso
-peso1=range(peso,na.rm=TRUE)
-amplitud=(peso1[2]-peso1[1])
-amplitud
-k=7
-ancho=amplitud/k
+rango_peso=range(peso,na.rm=TRUE)
+amplitud_peso=(rango_peso[2]-rango_peso[1])/k
+amplitud_peso
 
-tabla_peso=table.freq(hist(peso, breaks = seq(from=peso1[1],to=peso1[2],by=ancho), include.lowest = T, right = F, plot = F))
+tabla_peso=table.freq(hist(peso, breaks = seq(from=rango_peso[1],to=rango_peso[2],by=amplitud_peso), include.lowest = T, right = F, plot = F))
 names(tabla_peso)=c("Límite inferior de clase","Límite superior de clase","Marca de clase",
                     "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
                     "Frecuencia acumulada relativa en %")
@@ -68,7 +145,7 @@ mediana=median(is.na(peso))
 #desviacion del peso
 desviacion=sd(is.na(peso))
 
-#Cuartiles de la Altura
+#Cuartiles del peso
 q1=quantile(peso,c(0.25),na.rm=TRUE)[1]
 q2=quantile(peso,c(0.50),na.rm=TRUE)[1]
 q3=quantile(peso,c(0.75),na.rm=TRUE)[1]
@@ -79,13 +156,13 @@ curtosis=kurtosis(peso)
 #Sesgo del peso
 sesgo=skewness(peso)
 
-medidas=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
-names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
-                 "Curtosis","Sesgo","Desviación Estándar")
-medidas
+medidas_peso=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
+names(medidas_peso)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
+                      "Curtosis","Sesgo","Desviación Estándar")
+medidas_peso
 
 #Histograma de Frecuencias del peso
-hist(peso, breaks = seq(from=peso1[1],to=peso1[2],by=ancho), include.lowest = T, right = F,
+hist(peso, breaks = seq(from=rango_peso[1],to=rango_peso[2],by=amplitud_peso), include.lowest = T, right = F,
      main="Histograma de frecuencias de Peso",ylab="Frecuencia absoluta",xlab="Peso")
 
 #ojiva
@@ -101,133 +178,129 @@ lines(quartil,q,type="l", col="brown")
 boxplot(peso,main="Diagrama de Peso",ylab="Peso / Libras")
 
 
-
 ##############################################################
-#Altura
+#Estatura
 ##############################################################
 
 #Sacamos la maxima y minima altura del conjunto de datos
-altura = datos_estudiantes$Estatura
-altura_rango = range(altura, na.rm = T)
+estatura = datos_estudiantes$Estatura
+estatura_rango = range(estatura, na.rm = T)
 
+amplitud_estaturas = (estatura_rango[2]- estatura_rango[1])/k
 
-amplitud_alturas = (altura_rango[2]- altura_rango[1])/7
+tabla_estatura=  table.freq(hist(estatura, breaks = seq(from=estatura_rango[1], to=estatura_rango[2], by=amplitud_estaturas), include.lowest = T, right = F, plot = F))
+names(tabla_estatura)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
+                         "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
+                         "Frecuencia acumulada relativa en %")
+tabla_estatura
 
-tabla=  table.freq(hist(altura, breaks = seq(from=altura_rango[1], to=altura_rango[2], by=amplitud_alturas), include.lowest = T, right = F, plot = F))
-names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
-                "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
-                "Frecuencia acumulada relativa en %")
-tabla
+#Media de la estatura
+media=mean(estatura, na.rm = T)
 
-#Media de la Altura
-media=mean(altura, na.rm = T)
+#Mediana de la estatura
+mediana=median(estatura, na.rm = T)
 
-#Mediana de la Altura
-mediana=median(altura, na.rm = T)
+#Desviacion de la estatura
+desviacion=sd(estatura, na.rm = T)
 
-#Desviacion de la Altura
-desviacion=sd(altura, na.rm = T)
+#Cuartiles de la estatura
+q1=quantile(estatura,c(0.25), na.rm = T)[1]
+q2=quantile(estatura,c(0.50), na.rm = T)[1]
+q3=quantile(estatura,c(0.75), na.rm = T)[1]
 
-#Cuartiles de la Altura
-q1=quantile(altura,c(0.25), na.rm = T)[1]
-q2=quantile(altura,c(0.50), na.rm = T)[1]
-q3=quantile(altura,c(0.75), na.rm = T)[1]
+#Kurtosis de la estatura
+curtosis=kurtosis(estatura)
 
-#Kurtosis de la altura
-curtosis=kurtosis(altura)
+#Sesgo de la estatura
+sesgo=skewness(estatura)
 
-#Sesgo de la altura
-sesgo=skewness(altura)
+medidas_estatura=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
+names(medidas_estatura)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
+                          "Curtosis","Sesgo","Desviación Estándar")
+medidas_estatura
 
-medidas=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
-names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
-                 "Curtosis","Sesgo","Desviación Estándar")
-medidas
-
-#Histograma de Frecuencias de la altura
-hist(altura, breaks = seq(from=altura_rango[1],to=altura_rango[2],by=amplitud_alturas), include.lowest = T, right = F,
-     main="Histograma de frecuencias de Altura",ylab="Frecuencia absoluta",xlab="Altura")
+#Histograma de Frecuencias de la estatura
+hist(estatura, breaks = seq(from=estatura_rango[1],to=estatura_rango[2],by=amplitud_estaturas), include.lowest = T, right = F,
+     main="Histograma de frecuencias de Estatura",ylab="Frecuencia absoluta",xlab="Estatura")
 
 
 #ojiva
-# Ojiva Altura
+# Ojiva estatura
 q = c(0.05,0.12,0.55,0.75,0.95) ##datos para grafico
-quartil_altura = quantile(altura, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
-quartil_altura
+quartil_estatura = quantile(estatura, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
+quartil_estatura
 
-plot(quartil_altura, q, main = "Ojiva Peso", xlab = "Puntaje", ylab = "Frecuencia Relativa")
-lines(quartil_altura, q, type="l", col="brown")
+plot(quartil_estatura, q, main = "Ojiva Peso", xlab = "Puntaje", ylab = "Frecuencia Relativa")
+lines(quartil_estatura, q, type="l", col="brown")
 
 #cajas de textos
-boxplot(altura, main="Diagrama de Altura",ylab="Altura en metros")
-
-
-
-
+boxplot(estatura, main="Diagrama de Estatura",ylab="Estatura en metros")
 
 ##############################################################
-#ICM
+#IMC
 ##############################################################
 
-#Calculamos los ICM de cada estudiante
+#Calculamos los IMC de cada estudiante
 pesos_en_kg = datos_estudiantes$Peso/2.2
-altura = datos_estudiantes$Estatura
-icm = pesos_en_kg/(altura**2)
-icm
+estatura = datos_estudiantes$Estatura
+IMC = pesos_en_kg/(estatura**2)
+IMC
 
-#Sacamos el maximo valor de icm y el menor valor
-icm_rango=range(icm, na.rm = T)
+#Sacamos el maximo valor de IMC y el menor valor
+IMC_rango=range(IMC, na.rm = T)
 
 
-amplitud = (icm_rango[2]-icm_rango[1])/7 #amplitud de la clase
-tabla=  table.freq(hist(icm, breaks = seq(from=icm_rango[1], to=icm_rango[2], by=amplitud), include.lowest = T, right = F, plot = F))
-names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
-                "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
-                "Frecuencia acumulada relativa en %")
-tabla
+amplitud_IMC = (IMC_rango[2]-IMC_rango[1])/k #amplitud de la clase
+tabla_IMC=  table.freq(hist(IMC, breaks = seq(from=IMC_rango[1], to=IMC_rango[2], by=amplitud_IMC), include.lowest = T, right = F, plot = F))
+names(tabla_IMC)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
+                    "Frecuencia absoluta","Frecuencia relativa absoluta en %","Frecuencia acumulada",
+                    "Frecuencia acumulada relativa en %")
+tabla_IMC
 
-#Media del ICM
-media=mean(icm, na.rm = T)
+#Media del IMC
+media=mean(IMC, na.rm = T)
 
-#Mediana del ICM
-mediana=median(icm, na.rm = T)
+#Mediana del IMC
+mediana=median(IMC, na.rm = T)
 
-#Desviacion del ICM
-desviacion=sd(icm, na.rm = T)
+#Desviacion del IMC
+desviacion=sd(IMC, na.rm = T)
 
-#Cuartiles del ICM
-q1=quantile(icm,c(0.25), na.rm = T)[1]
-q2=quantile(icm,c(0.50), na.rm = T)[1]
-q3=quantile(icm,c(0.75), na.rm = T)[1]
+#Cuartiles del IMC
+q1=quantile(IMC,c(0.25), na.rm = T)[1]
+q2=quantile(IMC,c(0.50), na.rm = T)[1]
+q3=quantile(IMC,c(0.75), na.rm = T)[1]
 
 #Kurtosis
-curtosis=kurtosis(icm)
+curtosis=kurtosis(IMC)
 
 #Sesgos
-sesgo=skewness(icm)
+sesgo=skewness(IMC)
 
 #Tabla
-medidas=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
-names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
-                 "Curtosis","Sesgo","Desviación Estándar")
-medidas
+medidas_IMC=data.frame(media,mediana,q1,q2,q3,curtosis,sesgo,desviacion,row.names = c("Medidas"))
+names(medidas_IMC)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
+                     "Curtosis","Sesgo","Desviación Estándar")
+medidas_IMC
 
 #Histograma de Frecuencias
-hist(icm, breaks = seq(from=icm_rango[1],to=icm_rango[2],by=amplitud), include.lowest = T, right = F,
-     main="Histograma de frecuencias de ICM",ylab="Frecuencia absoluta",xlab="ICM")
+hist(IMC, breaks = seq(from=IMC_rango[1],to=IMC_rango[2],by=amplitud_IMC), include.lowest = T, right = F,
+     main="Histograma de frecuencias de IMC",ylab="Frecuencia absoluta",xlab="IMC")
 
 
 #ojiva
-#Ojiva ICM
+#Ojiva IMC
 q = c(0.05,0.12,0.55,0.75,0.95) ##datos para grafico
-quartil_icm = quantile(icm, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
-quartil_icm
+quartil_IMC = quantile(IMC, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
+quartil_IMC
 
-plot(quartil_icm, q, main = "Ojiva Peso", xlab = "Puntaje", ylab = "Frecuencia Relativa")
-lines(quartil_icm, q, type="l", col="brown")
+plot(quartil_IMC, q, main = "Ojiva Peso", xlab = "Puntaje", ylab = "Frecuencia Relativa")
+lines(quartil_IMC, q, type="l", col="brown")
 
 #cajas de textos
-boxplot(icm, main="Diagrama de ICM",ylab="ICM")
+boxplot(IMC, main="Diagrama de IMC",ylab="IMC")
+
+
 
 ##############################################################
 #Frecuencia_semanal_actividad_fisica
@@ -239,7 +312,7 @@ frenc_act_fis = datos_estudiantes$Frecuencia_semanal_actividad_fisica
 frenc_act_fis_rango = range(frenc_act_fis, na.rm = T)
 
 
-amplitud_frenc_act_fis = (frenc_act_fis_rango[2]- frenc_act_fis_rango[1])/7
+amplitud_frenc_act_fis = (frenc_act_fis_rango[2]- frenc_act_fis_rango[1])/k
 
 tabla=  table.freq(hist(frenc_act_fis, breaks = seq(from=frenc_act_fis_rango[1], to=frenc_act_fis_rango[2], by=amplitud_frenc_act_fis), include.lowest = T, right = F, plot = F))
 names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
@@ -302,7 +375,7 @@ prom_gaseosa = datos_estudiantes$Consumo_semanal_promedio_gaseosas
 prom_gaseosa_rango = range(prom_gaseosa, na.rm = T)
 
 
-amplitud_gaseosa_rango = (prom_gaseosa_rango[2]- prom_gaseosa_rango[1])/7
+amplitud_gaseosa_rango = (prom_gaseosa_rango[2]- prom_gaseosa_rango[1])/k
 
 tabla=  table.freq(hist(prom_gaseosa, breaks = seq(from=prom_gaseosa_rango[1], to=prom_gaseosa_rango[2], by=amplitud_gaseosa_rango), include.lowest = T, right = F, plot = F))
 names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
@@ -362,7 +435,7 @@ prom_sem_ag = datos_estudiantes$Consumo_promedio_semanal_agua
 prom_sem_ag_rango = range(prom_sem_ag, na.rm = T)
 
 
-amplitud_prom_sem_ag = (prom_sem_ag_rango[2]- prom_sem_ag_rango[1])/7
+amplitud_prom_sem_ag = (prom_sem_ag_rango[2]- prom_sem_ag_rango[1])/k
 
 tabla=  table.freq(hist(prom_sem_ag, breaks = seq(prom_sem_ag_rango[1], to=prom_sem_ag_rango[2], by=amplitud_prom_sem_ag), include.lowest = T, right = F, plot = F))
 names(tabla)= c("Límite inferior de clase","Límite superior de clase","Marca de clase",
@@ -396,7 +469,7 @@ names(medidas)=c("Media","Mediana","Cuartil 1","Cuartil 2","Cuartil 3",
 medidas
 
 #Histograma de la Consumo_promedio_semanal_agua
-hist(prom_sem_ag, breaks = seq(from=prom_sem_ag[1],to=prom_sem_ag[2],by=amplitud_prom_sem_ag), include.lowest = T, right = F,
+hist(prom_sem_ag, breaks = seq(from=prom_sem_ag_rango[1],to=prom_sem_ag_rango[2],by=amplitud_prom_sem_ag), include.lowest = T, right = F,
      main="Histograma de Promedio de Consumo de Agua Semanalmente",ylab="Frecuencia absoluta",xlab="Promedio de Consumo de Agua Semanalmente")
 
 
