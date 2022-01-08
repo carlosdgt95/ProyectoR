@@ -1,9 +1,10 @@
 
 #"C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx" - Joan
+#"C:/Users/Carlos Gomez/Desktop/proyecto2githunestaditica/ProyectoR/datos_estudiantes.xlsx"
 
 library(readxl)
 library(agricolae)
-datos_estudiantes <- read_excel("C:/Users/Carlos Gomez/Desktop/proyecto2githunestaditica/ProyectoR/datos_estudiantes.xlsx")
+datos_estudiantes <- read_excel("C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx")
 datos_estudiantes
 
 #cualitativas tablas
@@ -110,6 +111,29 @@ diagrama_ansiedad = barplot(tablaf_ansiedad , main="Diagrama Episodios Semanales
 etiqueta_diag_ansiedad = paste(round(tabla_freq_relativa_ansiedad*100, 2), '%', sep=' ')
 diagrama_circular_estres = pie(tablaf_ansiedad, labels = etiqueta_diag_ansiedad, col = colores_diag_ansiedad, main= 'Diagrama Episodios Semanales de ansiedad')
 legend('topleft', title = 'Episodios de Ansiedad', c("0-1","2-3","4-5","5+"), cex=0.4, fill = colores_diag_ansiedad)
+
+#################################
+#Episodios_por_semana_tristeza
+#################################
+
+#Tabla de frecuencia
+tablaf_tristeza=table(datos_estudiantes$Episodios_por_semana_tristeza)
+tablaf_tristeza
+
+#Tabla de frecuencia relativa
+tabla_freq_relativa_tristeza = prop.table(tablaf_tristeza)
+tabla_freq_relativa_tristeza
+
+#Diagrama de barras de Tristeza
+
+colores_diag_tristeza = palette("Alphabet")
+diagrama_tristeza = barplot(tablaf_tristeza, main=" Diagrama Episodios Semanales de Estres" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col=colores_diag_tristeza)
+
+#Diagrama circular de Tristeza
+etiqueta_diag_triteza = paste(round(tabla_freq_relativa_tristeza*100, 2), '%', sep=' ')
+diagrama_circular_tristeza = pie(tablaf_tristeza, labels = etiqueta_diag_triteza, col = colores_diag_tristeza, main = 'Diagrama de Tristeza')
+legend('topleft', title = 'Episodios de Tristeza', c("0-1","2-3","4-5","5+"), cex=0.5, fill = colores_diag_tristeza)
+
 
 
 ############## cuantitativas ##############
@@ -492,42 +516,84 @@ imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
 imc
 datos_estudiantes$IMC = imc
 
-#Diagrama de caja de IMC por Episodios de Miedo
-boxplot(datos_estudiantes$IMC~datos_estudiantes$Episodios_por_semana_miedo, 
-        ylab = 'IMC', xlab = 'Episodios de Miedo', 
-        main='Diagrama de caja de IMC por Episodios de Miedo')
+
+###############################################################################
 # Diagramas de cajas Vs variable cualitativa
 ###############################################################################
 
-par(mfrow = c(2,2))
-boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~datos_estudiantes$Episodios_por_semana_estres,
+
+par(mfrow = c(1,2))
+
+#Gasesosas por Estres
+boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
+          datos_estudiantes$Episodios_por_semana_estres,
         ylab = 'Consumo de Gaseosa', xlab = 'Episodios de Estres', 
-        main='Diagrama de caja de Consumo de gaseosa por episodios de estres'
+        names= c("0-1","2-3","4-5","5+"),
+        main='Cons. de gaseosa por Ep. de estres'
         )
+
+#Energizante por Tristeza
 boxplot(datos_estudiantes$Consumo_promedio_semanal_energizantes~datos_estudiantes$Episodios_por_semana_tristeza, 
         ylab = 'Cons. Prom Energizantes', xlab = 'Episodios de Tristeza', 
-        main='Diagrama de caja de Cons. Prom Energizantes por Episodios de Tristeza')
-par(mfrow = c(2,2))
+        names=c("0-1","2-3","4-5","5+"),
+        main='Cons. Prom Energizantes por Ep. de Tristeza')
+par(mfrow = c(1,2))
 
-par(mfrow = c(2,2))
-boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~datos_estudiantes$Episodios_por_semana_ansiedad,xlab="Consumo de agua",ylab="Ansiedad por semana",col="turquoise")
 
+par(mfrow = c(1,2))
+
+#Agua por Ansiedad
+boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
+        datos_estudiantes$Episodios_por_semana_ansiedad,
+        xlab="Consumo de agua",ylab="Ansiedad por semana",
+        names=c("0-1","2-3","4-5","5+"),
+        main='Cons. Agua por Ep. de Ansiedad',
+        col="turquoise")
+
+#IMC por Miedo
 boxplot(datos_estudiantes$IMC~datos_estudiantes$Episodios_por_semana_miedo, 
         ylab = 'IMC', xlab = 'Episodios de Miedo', 
-        main='Diagrama de caja de IMC por Episodios de Miedo')
-par(mfrow = c(2,2))
+        names=c("0-1","2-3","4-5"),
+        main='IMC por Ep. de Miedo')
+par(mfrow = c(1,2))
 
-par(mfrow = c(2,2))
 
-boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~datos_estudiantes$Episodios_por_semana_ira_frustacion, 
-        ylab = 'Consumo Prom. Gasesosas', xlab = 'Episodios de Ira', 
-        main='Diagrama de caja de Cons. Prom de Gaseosas por Episodios de Ira')
+par(mfrow = c(1,2))
 
+#Carbohidratos por Ira
+boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~datos_estudiantes$Episodios_por_semana_ira_frustacion, 
+        ylab = 'Consumo Prom. Carbohid', xlab = 'Episodios de Ira',
+        names = c("0-1","2-3","4-5","5+"),
+        main='Porc. Prom Carbohid por Ep. de Ira')
+
+#Gasesosas por Tristeza
 boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~datos_estudiantes$Episodios_por_semana_tristeza, 
         ylab = 'Cons. Prom Gaseosas', xlab = 'Episodios de Tristeza', 
-        main='Diagrama de caja de Cons. Prom Gaseosas por Episodios de Tristeza')
+        names=c("0-1","2-3","4-5","5+"),
+        main='Cons. Prom Gaseosas por Ep. de Tristeza')
+par(mfrow = c(1,2))
 
-par(mfrow = c(2,2))
+
+
+
+par(mfrow = c(1,2))
+
+#IMC por Tristeza
+boxplot(datos_estudiantes$IMC~datos_estudiantes$Episodios_por_semana_tristeza, 
+        ylab = 'IMC', xlab = 'Episodios de Tristeza', 
+        names= c("0-1","2-3","4-5","5+"),
+        main='IMC por Ep. de Tristeza')
+
+#Gaseosas por miedo
+boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
+          datos_estudiantes$Episodios_por_semana_miedo, 
+        ylab = 'Cons. Gaseosas', xlab = 'Episodios de Miedo', 
+        names=c("0-1","2-3","4-5"),
+        main='Cons. Gaseosas por Ep. de Miedo')
+
+par(mfrow = c(1,2))
+
+
 
 ##############################################################
 #Matriz de correlacion y covarianza
