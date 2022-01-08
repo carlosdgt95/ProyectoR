@@ -545,7 +545,7 @@ par(mfrow = c(1,2))
 #Agua por Ansiedad
 boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
         datos_estudiantes$Episodios_por_semana_ansiedad,
-        xlab="Consumo de agua",ylab="Ansiedad por semana",
+        ylab="Cons. de agua", xlab= "Ansiedad por semana",
         names=c("0-1","2-3","4-5","5+"),
         main='Cons. Agua por Ep. de Ansiedad',
         col="turquoise")
