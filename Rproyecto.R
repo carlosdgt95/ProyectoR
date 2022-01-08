@@ -574,8 +574,6 @@ boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~datos_estudiantes$Ep
 par(mfrow = c(1,2))
 
 
-
-
 par(mfrow = c(1,2))
 
 #IMC por Tristeza
