@@ -3,7 +3,7 @@
 
 library(readxl)
 library(agricolae)
-datos_estudiantes <- read_excel("C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx")
+datos_estudiantes <- read_excel("C:/Users/Carlos Gomez/Desktop/proyecto2githunestaditica/ProyectoR/datos_estudiantes.xlsx")
 datos_estudiantes
 
 #cualitativas tablas
@@ -481,3 +481,46 @@ lines(quartil_prom_carbh_com, q, type="l", col="brown")
 #cajas de textos
 boxplot(prom_carbh_com, main="Diagrama de Promedio de Consumo de Carbohidratos por Comida",ylab="
         Porcentaje de Carbohidrato")
+
+
+#agregar icm
+imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
+imc
+datos_estudiantes$IMC = imc
+
+#Diagrama de caja de IMC por Episodios de Miedo
+boxplot(datos_estudiantes$IMC~datos_estudiantes$Episodios_por_semana_miedo, 
+        ylab = 'IMC', xlab = 'Episodios de Miedo', 
+        main='Diagrama de caja de IMC por Episodios de Miedo')
+# Diagramas de cajas Vs variable cualitativa
+###############################################################################
+
+par(mfrow = c(2,2))
+boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~datos_estudiantes$Episodios_por_semana_estres,
+        ylab = 'Consumo de Gaseosa', xlab = 'Episodios de Estres', 
+        main='Diagrama de caja de Consumo de gaseosa por episodios de estres'
+        )
+boxplot(datos_estudiantes$Consumo_promedio_semanal_energizantes~datos_estudiantes$Episodios_por_semana_tristeza, 
+        ylab = 'Cons. Prom Energizantes', xlab = 'Episodios de Tristeza', 
+        main='Diagrama de caja de Cons. Prom Energizantes por Episodios de Tristeza')
+par(mfrow = c(2,2))
+
+par(mfrow = c(2,2))
+boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~datos_estudiantes$Episodios_por_semana_ansiedad,xlab="Consumo de agua",ylab="Ansiedad por semana",col="turquoise")
+
+boxplot(datos_estudiantes$IMC~datos_estudiantes$Episodios_por_semana_miedo, 
+        ylab = 'IMC', xlab = 'Episodios de Miedo', 
+        main='Diagrama de caja de IMC por Episodios de Miedo')
+par(mfrow = c(2,2))
+
+par(mfrow = c(2,2))
+
+boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~datos_estudiantes$Episodios_por_semana_ira_frustacion, 
+        ylab = 'Consumo Prom. Gasesosas', xlab = 'Episodios de Ira', 
+        main='Diagrama de caja de Cons. Prom de Gaseosas por Episodios de Ira')
+
+boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~datos_estudiantes$Episodios_por_semana_tristeza, 
+        ylab = 'Cons. Prom Gaseosas', xlab = 'Episodios de Tristeza', 
+        main='Diagrama de caja de Cons. Prom Gaseosas por Episodios de Tristeza')
+
+par(mfrow = c(2,2))
