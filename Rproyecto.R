@@ -483,6 +483,10 @@ boxplot(prom_carbh_com, main="Diagrama de Promedio de Consumo de Carbohidratos p
         Porcentaje de Carbohidrato")
 
 
+
+
+
+##############################################################
 #agregar icm
 imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
 imc
@@ -524,3 +528,29 @@ boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~datos_estudiantes$Ep
         main='Diagrama de caja de Cons. Prom Gaseosas por Episodios de Tristeza')
 
 par(mfrow = c(2,2))
+
+##############################################################
+#Matriz de correlacion y covarianza
+##############################################################
+
+imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
+imc
+
+datos_estudiantes$IMC = imc
+
+datos_cuantitativos = datos_estudiantes[,c(5,6,16, 17,18,20,38)]
+
+names(datos_cuantitativos) = c('Peso', 'Est', 'Prom.Gaseos', 'Prom.Energ', 
+                               'Prom.Agua', 'Prom.Carb.Comida', 'IMC')
+
+matriz_cov = round(cov(na.omit(datos_cuantitativos)),2)
+matriz_cov
+
+matriz_corr = round(cor(na.omit(datos_cuantitativos)), 2)
+matriz_corr
+
+library(corrplot)
+
+#type="upper"
+corrplot(matriz_corr, method="circle", tl.srt=45)
+
