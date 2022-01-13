@@ -617,3 +617,47 @@ library(corrplot)
 corrplot(matriz_corr, method="circle", tl.srt=45)
 
 
+##############################################################
+#Intervalos de Confianza
+
+intervaloConfianza <- function (muestra, nivelConfianza, z = T) {
+  estadistico = 0
+  media = mean(muestra, na.rm = T)
+  significancia = (1 - (nivelConfianza/100))/2
+  errorEstandar = sd(muestra, na.rm = T) / sqrt(length(muestra))
+  
+  if(z) {
+    estadistico = qnorm(significancia, lower.tail = F) } 
+  else {
+    estadistico = qt(significancia, lower.tail = F, length(muestra) - 1) }
+  
+  c(media - (estadistico * errorEstandar), media + (estadistico * errorEstandar))
+}
+
+##############################################################################
+#Consumo Agua - Ep. Ansiedad
+
+
+cons_sem_agua = datos_estudiantes$Consumo_promedio_semanal_agua
+ep_ansiedad = datos_estudiantes$Episodios_por_semana_ansiedad
+
+
+muestra = as.numeric(unlist(cons_sem_agua[ep_ansiedad==1]))
+print(mean(cons_sem_agua[ep_ansiedad==1], na.rm = T))
+print(length(cons_sem_agua[ep_ansiedad==1]))
+print(intervaloConfianza(muestra, 95, T))
+
+
+# Intervalos
+for(x in 2:4) {
+  muestra = as.numeric(unlist(cons_sem_agua[ep_ansiedad==x]))
+  print('***********************************')
+  print(mean(cons_sem_agua[ep_ansiedad==x], na.rm = T))
+  print(length(cons_sem_agua[ep_ansiedad==x]))
+  print(intervaloConfianza(muestra, 95, F))
+  print('***********************************')
+}
+
+
+
+
