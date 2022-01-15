@@ -600,9 +600,9 @@ imc
 
 datos_estudiantes$IMC = imc
 
-datos_cuantitativos = datos_estudiantes[,c(5,6,16, 17,18,20,38)]
+datos_cuantitativos = datos_estudiantes[,c(5,6,16,18,20,38)]
 
-names(datos_cuantitativos) = c('Peso', 'Est', 'Prom.Gaseos', 'Prom.Energ', 
+names(datos_cuantitativos) = c('Peso', 'Est', 'Prom.Gaseos', 
                                'Prom.Agua', 'Prom.Carb.Comida', 'IMC')
 
 matriz_cov = round(cov(na.omit(datos_cuantitativos)),2)
