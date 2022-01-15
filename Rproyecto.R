@@ -524,38 +524,21 @@ datos_estudiantes$IMC = imc
 
 par(mfrow = c(1,2))
 
-#Gasesosas por Estres
-boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
-          datos_estudiantes$Episodios_por_semana_estres,
-        ylab = 'Consumo de Gaseosa', xlab = 'Episodios de Estres', 
-        names= c("0-1","2-3","4-5","5+"),
-        main='Cons. de gaseosa por Ep. de estres'
-        )
-
-#IMC por Tristeza
-boxplot(datos_estudiantes$IMC~
-          datos_estudiantes$Episodios_por_semana_tristeza,
-        ylab = 'IMC', xlab = 'Episodios de Tristeza', 
-        names= c("0-1","2-3","4-5","5+"),
-        main='IMC por Ep. de Tristeza'
-)
-
-
-par(mfrow = c(1,2))
-
 #Agua por Ansiedad
 boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
-        datos_estudiantes$Episodios_por_semana_ansiedad,
-        ylab="Cons. de agua", xlab= "Ansiedad por semana",
-        names=c("0-1","2-3","4-5","5+"),
-        main='Cons. Agua por Ep. de Ansiedad',
-        col="turquoise")
-
-#IMC por Tristeza
-boxplot(datos_estudiantes$IMC~datos_estudiantes$Episodios_por_semana_tristeza, 
-        ylab = 'IMC', xlab = 'Episodios de Tristeza', 
+          datos_estudiantes$Episodios_por_semana_ansiedad,
+        ylab = 'Consumo de Agua', xlab = 'Episodios de Ansiedad', 
         names= c("0-1","2-3","4-5","5+"),
-        main='IMC por Ep. de Tristeza')
+        main='Cons. de Agua por Ep. de Ansiedad'
+)
+
+#Gaseosa por Ansiedad
+boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
+          datos_estudiantes$Episodios_por_semana_ansiedad,
+        ylab = 'Consumo de Gaseosa', xlab = 'Episodios de Ansiedad', 
+        names= c("0-1","2-3","4-5","5+"),
+        main='Cons. de gaseosa por Ep. de Ansiedad'
+)
 
 
 par(mfrow = c(1,2))
@@ -566,29 +549,32 @@ boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~datos_estu
         names = c("0-1","2-3","4-5","5+"),
         main='Porc. Prom Carbohid por Ep. de Ira')
 
-#Gaseosas por Ansiedad
-boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
-          datos_estudiantes$Episodios_por_semana_ansiedad,
-        ylab = 'Consumo de Gaseosa', xlab = 'Episodios de Ansiedad', 
+
+#IMC por Tristeza
+boxplot(datos_estudiantes$IMC~datos_estudiantes$Episodios_por_semana_tristeza, 
+        ylab = 'IMC', xlab = 'Episodios de Tristeza', 
         names= c("0-1","2-3","4-5","5+"),
-        main='Cons. de gaseosa por Ep. de Ansiedad')
+        main='IMC por Ep. de Tristeza')
 
 
 par(mfrow = c(1,2))
 
-#IMC por Miedo
-boxplot(datos_estudiantes$IMC~datos_estudiantes$Episodios_por_semana_miedo, 
-        ylab = 'IMC', xlab = 'Episodios de Miedo', 
-        names=c("0-1","2-3","4-5"),
-        main='IMC por Ep. de Miedo')
+#Agua por Estres
+boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
+          datos_estudiantes$Episodios_por_semana_estres,
+        ylab = 'Consumo de Agua', xlab = 'Episodios de Estres', 
+        names= c("0-1","2-3","4-5","5+"),
+        main='Cons. de Agua por Ep. de estres'
+)
 
-#Gaseosas por miedo
-boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
-          datos_estudiantes$Episodios_por_semana_miedo, 
-        ylab = 'Cons. Gaseosas', xlab = 'Episodios de Miedo', 
-        names=c("0-1","2-3","4-5"),
-        main='Cons. Gaseosas por Ep. de Miedo')
 
+#Carbohidratos por Miedo
+boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~
+          datos_estudiantes$Episodios_por_semana_miedo,
+        ylab = 'Consumo de Carbohid', xlab = 'Episodios de Miedo', 
+        names=c("0-1","2-3","4-5"),
+        main='Cons. de Carbohid por Ep. de Miedo'
+)
 
 
 ##############################################################
