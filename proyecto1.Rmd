@@ -1,0 +1,107 @@
+---
+title: "Proyecto Estadistica"
+author: "Grupo6"
+date: "16/1/2022"
+output:
+  html_document: default
+  pdf_document: default
+---
+```{r}
+library(readxl)
+library(agricolae)
+library(BSDA)
+
+#"C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx"
+datos_estudiantes <- read_excel("datos_estudiantes.xlsx")
+```
+
+<font size="5">5. Variables Cualitativas
+
+<font size="4">5.1 Diagrama de cajas de consumo promedio semanal de agua segmentado por Episodios por semana de Ansiedad
+```{r}
+boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
+          datos_estudiantes$Episodios_por_semana_ansiedad,
+        ylab = 'Consumo de Agua', xlab = 'Episodios de Ansiedad', 
+        names= c("0-1","2-3","4-5","5+"),
+        main='Cons. de Agua por Ep. de Ansiedad'
+)
+```
+
+<font size='3'>
+Se puede observar en el grafico que la mediana de consumo semanal de agua de las personas que han tenido hasta 1 episodio de ansiedad es mayor en comparación a las personas que tienen mas de 2 episodios semanales de ansiedad. También se puede destacar que el 3er cuartil de las personas que sufren hasta 1 episodio de ansiedad es superior en comparación al 3er cuartil de las personas que sufren mas de 2 episodios de ansiedad. Por el momento se puede concluir que las personas que consumen más agua tienen menos episodios de ansiedad
+</font>
+
+<font size="4">5.2 Diagrama de cajas de consumo promedio semanal de agua segmentado por Episodios por semana de Ansiedad
+```{r}
+boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
+          datos_estudiantes$Episodios_por_semana_ansiedad,
+        ylab = 'Consumo de Gaseosa', xlab = 'Episodios de Ansiedad', 
+        names= c("0-1","2-3","4-5","5+"),
+        main='Cons. de gaseosa por Ep. de Ansiedad'
+)
+```
+
+<font size='3'>
+Se puede observar que la mediana de las personas que tienen de 4 a 5 episodios o mas son superiores en comparación a las personas que tienen entre 2 o 3 episodios o incluso de los que tienen hasta 1 episodio de ansiedad. Pero se puede observar que la mediana de las personas que sufren de 2 a 3 episodios es menor en comparación a las personas que sufren hasta 1 episodio. Entonces esto no indicaría que a mayor consumo de gaseosas se puede tener más episodios de ansiedad.
+
+
+<font size="4"> 5.3 Diagrama de cajas de porcentaje promedio de carbohidrato por comida segmentado por Episodios por semana de Ira o Frustración
+```{r}
+boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~
+          datos_estudiantes$Episodios_por_semana_ira_frustacion,
+        ylab = 'Consumo de Carbohid', xlab = 'Episodios de Ira', 
+        names= c("0-1","2-3","4-5","5+"),
+        main='Cons. de Carbohid por Ep. de Ira'
+)
+
+```
+
+<font size='3'>
+En este grafico se puede observar que las medianas de las personas que sufren de 4 a más episodios de ira esta alrededor de 50 en cuanto al porcentaje promedio de consumo de carbohidrato y a su vez se observa que es mayor en comparación a las medianas de las personas que tienen menos de 4 episodios de ira. Pero también se observan que la distribución es muy asimétrica. Por el momento se puede concluir que las personas que consumen un mayor porcentaje promedio de carbohidratos suelen tener más episodios de ira.
+
+
+<font size="4">5.4 Diagrama de cajas IMC segmentado por Episodios por semana de Tristeza
+```{r}
+imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
+datos_estudiantes$IMC = imc
+
+boxplot(datos_estudiantes$IMC~
+          datos_estudiantes$Episodios_por_semana_tristeza,
+        ylab = 'IMC', xlab = 'Episodios de Tristeza', 
+        names= c("0-1","2-3","4-5","5+"),
+        main='IMC por Ep. de Tristeza'
+)
+
+```
+
+<font size='3'>
+Al observar el grafico vemos que las medianas del índice de masa corporal (IMC) entre las personas que tienen un determinado numero de episodios de tristeza son muy inconsistentes, lo mas relevante que se puede decir es que las personas que tienen entre 4 a 5 episodios tienen una mediana superior en comparación al resto. Entonces esto no indicaría que a mayor índice de masa corporal hay mayores episodios de tristeza.
+
+
+<font size="4"> 5.5 Diagrama de cajas de consumo promedio semanal de agua segmentado por Episodios por semana de Estres
+```{r}
+boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
+          datos_estudiantes$Episodios_por_semana_estres,
+        ylab = 'Consumo de Agua', xlab = 'Episodios de Estres', 
+        names= c("0-1","2-3","4-5","5+"),
+        main='Cons. de Agua por Ep. de estrés'
+)
+```
+
+<font size='3'>
+Al observar el grafico, vemos que la mediana de las personas que tienen hasta un episodio de estrés es superior en comparación al resto es superior e incluso esta mas cercana al 3er cuartil por lo que se puede decir que las personas que consumen mas agua tienen hasta 1 episodio de estrés.
+
+
+<font size="4"> 5.6 Diagrama de cajas de porcentaje promedio de carbohidrato por comida segmentado por Episodios por semana de Miedo
+```{r}
+boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~
+          datos_estudiantes$Episodios_por_semana_miedo,
+        ylab = 'Consumo de Carbohid', xlab = 'Episodios de Miedo', 
+        names=c("0-1","2-3","4-5"),
+        main='Cons. de Carbohid por Ep. de Miedo'
+)
+```
+
+<font size='3'>
+Al observar este grafico vemos que las medianas del consumo de carbohidratos de las personas que tienen ente 0-1 o 2-3 están muy cercanas entre si aproximadamente por el 40% de carbohidrato por comida, pero se observa que las personas que tienen de 4 - 5 episodios su mediana es más alta que el resto. Entonces se podría decir por el momento que las personas que consumen más carbohidratos por comida tienden a tener más episodios de miedo.
+

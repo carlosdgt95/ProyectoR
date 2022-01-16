@@ -620,27 +620,58 @@ intervaloConfianza <- function (muestra, nivelConfianza, z = T) {
   c(media - (estadistico * errorEstandar), media + (estadistico * errorEstandar))
 }
 
-##############################################################################
-#Consumo Agua - Ep. Ansiedad
+# IC Consumo gaseosas
+
+set.seed(1)
+muestra_gaseosas = sample(datos_estudiantes$Consumo_semanal_promedio_gaseosas, 
+                          size=30, replace = F)
+
+media_gaseosas = mean(muestra_gaseosas, na.rm = T)
+media_gaseosas
+
+int_confianza_gaseosas = intervaloConfianza(muestra_gaseosas, 95, T)
+int_confianza_gaseosas
 
 
-cons_sem_agua = datos_estudiantes$Consumo_promedio_semanal_agua
-ep_ansiedad = datos_estudiantes$Episodios_por_semana_ansiedad
+# IC Consumo Agua
+
+set.seed(1)
+muestra_agua = sample(datos_estudiantes$Consumo_promedio_semanal_agua, 
+                      size=30, replace = F)
+
+media_agua = mean(muestra_agua, na.rm = T)
+media_agua
+
+int_confianza_agua = intervaloConfianza(muestra_agua, 95, T)
+int_confianza_agua
+
+# IC Consumo Carbohidratos
+
+set.seed(1)
+muestra_carb = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida, 
+                      size=30, replace = F)
+
+media_carb = mean(muestra_carb, na.rm = T)
+media_carb
+
+int_confianza_carb = intervaloConfianza(muestra_carb, 95, T)
+int_confianza_carb
 
 
-muestra = as.numeric(unlist(cons_sem_agua[ep_ansiedad==1]))
-print(mean(cons_sem_agua[ep_ansiedad==1], na.rm = T))
-print(length(cons_sem_agua[ep_ansiedad==1]))
-print(intervaloConfianza(muestra, 95, T))
+# IC IMC
+imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
+datos_estudiantes$IMC = imc
 
+set.seed(1)
+muestra_imc = sample(datos_estudiantes$IMC, 
+                     size=30, replace = F)
 
-# Intervalos
-for(x in 2:4) {
-  muestra = as.numeric(unlist(cons_sem_agua[ep_ansiedad==x]))
-  print('***********************************')
-  print(mean(cons_sem_agua[ep_ansiedad==x], na.rm = T))
-  print(length(cons_sem_agua[ep_ansiedad==x]))
-  print(intervaloConfianza(muestra, 95, F))
-  print('***********************************')
-}
+media_imc = mean(muestra_imc, na.rm = T)
+media_imc
+
+int_confianza_imc = intervaloConfianza(muestra_imc, 95, T)
+int_confianza_imc
+
+##############################################################
+#Prueba de Hipotesis
 
