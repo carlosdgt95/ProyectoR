@@ -1,24 +1,76 @@
 ---
-title: "Proyecto Estadistica"
-author: "Grupo6"
+title: "Proyecto Estadistica. Grupo6"
+author: "Alejandro Donoso, Carlos Gómez, Joan Gutiérrez, Luis Guaillas"
 date: "16/1/2022"
 output:
-  word_document: default
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
+
+<font size="3">Ingreso de datos y uso de librerias </font>
+
 ```{r}
 library(readxl)
 library(agricolae)
 library(BSDA)
+library(corrplot)
+library(psych)
 
-#"C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx"
 datos_estudiantes <- read_excel("datos_estudiantes.xlsx")
 ```
 
-# 5. Variables Cualitativas
 
-## 5.1 Diagrama de cajas de consumo promedio semanal de agua segmentado por Episodios por semana de Ansiedad
+<font size="6"> </font>
+<font size="6"> Capitulo 1
+
+<font size="5">1.Objetivos
+
+<font size="4">1.1.Objetivo General
+
+<font size="3">
+
+- Analizar la relacion entre la alimentacion y el indice de episodios emocionales sufridos por los Estudiantes de Estadistica de los Paralelos 2 y 5.
+
+<font size="4">1.2.Objetivo Especifico
+
+<font size="3">
+
+- Demostrar la Relacion de Causa-Efecto entre los episodios de Ansiedad y el bajo consumo de agua por parte de los estudiantes.
+
+- Medir el porcentaje de Carbohidratos y gaseosas consumidos por los estudiantes, y la relacion con su estado emocional.
+
+- Comparar el indice IMC de los estudiantes con los episodios de tristeza, como indicador de que la forma del cuerpo influye en la felicidad de los estudiantes 
+
+<font size="5">2.Introducción
+
+<font size="3">
+Muchas veces hemos escuchado cosas como bebe agua para calmar los nervios y la ansiedad, incluso existe un dicho en mexico que dice "un bolillo, para es susto". de tal forma parece ser que la alimenticion tiene relacion con lo emocional, una explicacion cientifica a esto pueden ser las hormonas y los neurotransmisores, quienes son los mensajeros químicos del cuerpo, y viajan a través del torrente sanguíneo hacia los tejidos y órganos, incluyendo el cerebro, a traves de Neurotransmisores positivos como la serotonina, la dopamina o las endorfinas. Será entonces el aumento o descenso de estas sustancias así como la presencia o ausencia de otras negativas, como la adrenalina o el cortisol, 
+provocará en nosotros  que nos sintamos más optimistas, motivados, animados o que por el contrario nos desanimemos, o tengamos una sensación de tristeza inexplicable.
+entre las mencionadas anteriormente tenemos: 
+- La serotonina, que modula el estado de ánimo así como las emociones, el sueño y el apetito. Clave para nuestra felicidad y ayuda a combatir el estrés y la depresión. Para que se produzca serotonina en nuestro cerebro es necesaria la presencia del triptófano.
+- La dopamina controla el movimiento, emociones, los ciclos de sueño y la capacidad de experimentar placer. Nos hace sentirnos bien y es determinante para mantener nuestros niveles de energía y favorece la concentración y motivación
+- Las endorfinas, opiáceos naturales del organismo con un poder mayor que cualquier medicamento contra el dolor. Promueven estados de bienestar, calma, mejoran el humor, contrarrestan los niveles elevados de adrenalina asociados a la ansiedad, potencian las funciones del sistema inmunitario y ayudan a reducir el dolor.
+Sustancias imprescindibles para nuestro organismo y directamente relacionadas con nuestro ánimo sería el grupo de vitaminas B siendo de importancia para el estado de animo, especialmente la vitamina B12 que aumenta la concentracion, la fibra que libera glucosa en el flujo sanguíneo de forma gradual, evitando que baje el azúcar ayudando en el humor, algunos ácidos grasos como el omega3 que favorece la disminución de síntomas de ansiedad, trastornos del sueño, sentimientos de tristeza; el triptófano imprescindible para la fabricación de serotonina, y minerales como el zinc que se relacionan con trastornos de estado de ánimo que además es una gran fuente de energía. Asi tambien tenemossustancias que deberian consumirse con moderacio por us efecto en el cuerpo como el azucar que en exceso puede generar fluctuaciones de azúcar en la sangre, que pueden provocar cambios de humor, y ejercer un efecto dañino sobe nuestra salud mental; las grasas saturadas cuyo consumo elevado causa engrosamiento de los vasos sanguíneos y bajan los niveles de serotonina, llevando a sentimientos de tristeza y desánimo, además de una desagradable sensación de pesadez y la Cafeina, que con su consumo excesivo puede producir irritabilidad, problemas estomacales, disminuir el ritmo cardíaco y además insomnio.
+Con respecto a la relacion Agua-Ansiedad, en un estudio de 2018 con más de 3,000 adultos, los que tomaron más agua tuvieron un menor riesgo de ansiedad y depresión que los que tomaron menos agua, Aunque la conexión entre la deshidratación y la depresión era más fuerte, los investigadores encontraron que la ansiedad era más alta en aquellos que no bebían suficiente agua, de igual manera, Un estudio más pequeño de 2014, donde los investigadores exploraron cómo aumentar o reducir el consumo de agua afectaba el estado de ánimo en las personas con diferentes hábitos para tomarla, Hallaron que las personas que usualmente tomaban mucha agua se sentían menos calmadas, menos contentas y más tensas cuando reducían su consumo de agua, Cuando los investigadores aumentaron el consumo de agua en los participantes, las personas en el estudio sentían más felicidad, sin importar cuánta agua tomaban normalmente, con los casos mencionados anteriormente, ademas de la duda acerca de la relacion del aspecto fisico con el estado de animo, nos llevo a realizar la siguientes pruebas para encontrar las respuestas a nuestras preguntas planteadas 
+
+
+<font size="6">Capitulo 2
+
+<font size="5">2.Analisis Cualitativos
+
+
+<font size="6">Capitulo 3
+
+<font size="5">3.Analisis Cuantitativos
+
+
+
+<font size="6">Capitulo 4
+
+<font size="5">4.Analisis Conjunto (Diagramas de cajas con cuant. y cualit) 
+
+
+<font size="4">4.1. Diagrama de cajas de consumo promedio semanal de agua segmentado por Episodios por semana de Ansiedad
 ```{r}
 boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
           datos_estudiantes$Episodios_por_semana_ansiedad,
@@ -29,10 +81,10 @@ boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
 ```
 
 <font size='3'>
-Se puede observar en el grafico que la mediana de consumo semanal de agua de las personas que han tenido hasta 1 episodio de ansiedad es mayor en comparación a las personas que tienen mas de 2 episodios semanales de ansiedad. También se puede destacar que el 3er cuartil de las personas que sufren hasta 1 episodio de ansiedad es superior en comparación al 3er cuartil de las personas que sufren mas de 2 episodios de ansiedad. Por el momento se puede concluir que las personas que consumen más agua tienen menos episodios de ansiedad.  
+Se puede observar en el grafico que la mediana de consumo semanal de agua de las personas que han tenido hasta 1 episodio de ansiedad es mayor en comparación a las personas que tienen mas de 2 episodios semanales de ansiedad. También se puede destacar que el 3er cuartil de las personas que sufren hasta 1 episodio de ansiedad es superior en comparación al 3er cuartil de las personas que sufren mas de 2 episodios de ansiedad. Por el momento se puede concluir que las personas que consumen más agua tienen menos episodios de ansiedad
+</font>
 
-
-## 5.2 Diagrama de cajas de consumo promedio semanal de agua segmentado por Episodios por semana de Ansiedad
+<font size="5">4.2. Diagrama de cajas de consumo promedio semanal de gaseosa segmentado por Episodios por semana de Ansiedad
 ```{r}
 boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
           datos_estudiantes$Episodios_por_semana_ansiedad,
@@ -43,10 +95,10 @@ boxplot(datos_estudiantes$Consumo_semanal_promedio_gaseosas~
 ```
 
 <font size='3'>
-Se puede observar que la mediana de las personas que tienen de 4 a 5 episodios o mas son superiores en comparación a las personas que tienen entre 2 o 3 episodios o incluso de los que tienen hasta 1 episodio de ansiedad. Pero se puede observar que la mediana de las personas que sufren de 2 a 3 episodios es menor en comparación a las personas que sufren hasta 1 episodio. Entonces esto no indicaría que a mayor consumo de gaseosas se puede tener más episodios de ansiedad.  
+Se puede observar que la mediana de las personas que tienen de 4 a 5 episodios o mas son superiores en comparación a las personas que tienen entre 2 o 3 episodios o incluso de los que tienen hasta 1 episodio de ansiedad. Pero se puede observar que la mediana de las personas que sufren de 2 a 3 episodios es menor en comparación a las personas que sufren hasta 1 episodio. Entonces esto no indicaría que a mayor consumo de gaseosas se puede tener más episodios de ansiedad.
 
 
-## 5.3 Diagrama de cajas de porcentaje promedio de carbohidrato por comida segmentado por Episodios por semana de Ira o Frustración
+<font size="5"> 4.3. Diagrama de cajas de porcentaje promedio de carbohidrato por comida segmentado por Episodios por semana de Ira o Frustración
 ```{r}
 boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~
           datos_estudiantes$Episodios_por_semana_ira_frustacion,
@@ -61,7 +113,7 @@ boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~
 En este grafico se puede observar que las medianas de las personas que sufren de 4 a más episodios de ira esta alrededor de 50 en cuanto al porcentaje promedio de consumo de carbohidrato y a su vez se observa que es mayor en comparación a las medianas de las personas que tienen menos de 4 episodios de ira. Pero también se observan que la distribución es muy asimétrica. Por el momento se puede concluir que las personas que consumen un mayor porcentaje promedio de carbohidratos suelen tener más episodios de ira.
 
 
-## 5.4 Diagrama de cajas IMC segmentado por Episodios por semana de Tristeza
+<font size="5">4.4. Diagrama de cajas IMC segmentado por Episodios por semana de Tristeza
 ```{r}
 imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
 datos_estudiantes$IMC = imc
@@ -79,7 +131,7 @@ boxplot(datos_estudiantes$IMC~
 Al observar el grafico vemos que las medianas del índice de masa corporal (IMC) entre las personas que tienen un determinado numero de episodios de tristeza son muy inconsistentes, lo mas relevante que se puede decir es que las personas que tienen entre 4 a 5 episodios tienen una mediana superior en comparación al resto. Entonces esto no indicaría que a mayor índice de masa corporal hay mayores episodios de tristeza.
 
 
-## 5.5 Diagrama de cajas de consumo promedio semanal de agua segmentado por Episodios por semana de Estres
+<font size="5"> 4.5. Diagrama de cajas de consumo promedio semanal de agua segmentado por Episodios por semana de Estres
 ```{r}
 boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
           datos_estudiantes$Episodios_por_semana_estres,
@@ -93,7 +145,7 @@ boxplot(datos_estudiantes$Consumo_promedio_semanal_agua~
 Al observar el grafico, vemos que la mediana de las personas que tienen hasta un episodio de estrés es superior en comparación al resto es superior e incluso esta mas cercana al 3er cuartil por lo que se puede decir que las personas que consumen mas agua tienen hasta 1 episodio de estrés.
 
 
-## 5.6 Diagrama de cajas de porcentaje promedio de carbohidrato por comida segmentado por Episodios por semana de Miedo
+<font size="5"> 4.6. Diagrama de cajas de porcentaje promedio de carbohidrato por comida segmentado por Episodios por semana de Miedo
 ```{r}
 boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~
           datos_estudiantes$Episodios_por_semana_miedo,
@@ -105,4 +157,544 @@ boxplot(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida~
 
 <font size='3'>
 Al observar este grafico vemos que las medianas del consumo de carbohidratos de las personas que tienen ente 0-1 o 2-3 están muy cercanas entre si aproximadamente por el 40% de carbohidrato por comida, pero se observa que las personas que tienen de 4 - 5 episodios su mediana es más alta que el resto. Entonces se podría decir por el momento que las personas que consumen más carbohidratos por comida tienden a tener más episodios de miedo.
+
+
+<font size="6">Capitulo 5
+
+<font size="5">5.Análisis covarianza y correlación
+
+```{r}
+imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
+datos_estudiantes$IMC = imc
+datos_cuantitativos = datos_estudiantes[,c(5,6,16,18,20,38)]
+names(datos_cuantitativos) = c('Peso', 'Est', 'Prom.Gaseos', 
+                               'Prom.Agua', 'Prom.Carb.Comida', 'IMC')
+
+matriz_cov = round(cov(na.omit(datos_cuantitativos)),2)
+matriz_cov
+
+matriz_corr = round(cor(na.omit(datos_cuantitativos)), 2)
+matriz_corr
+
+corrplot(matriz_corr, method="circle", tl.srt=45)
+```
+
+<font size="3">
+La matriz de covarianza muestra pocos datos negativos es decir que varían en direcciones opuestas esto indica que los valores del promedio de una variable están relacionados con valores por debajo del promedio de otra variable, como es el caso del consumo promedio semanal de agua y el porcentaje promedio de carbohidrato por comida. Para nuestro análisis descartamos el valor de covarianza entre estas dos variables (solo tomamos en cuenta el signo) y nos fijamos en el valor de correlación que es negativo y cercano a cero (-0.02) por lo concluimos que las variables tienen poca relación lineal entre ellas ya que es un valor menor a -0.5; esto no necesariamente indica que no existe relación entre ambas variables ya que aún puede influir la variación de una de ellas en el valor que tome la otra, es decir, puede existir una relación no lineal. 
+En la relación del IMC y el peso vemos una fuerte relación directa entre ambas variables, una correlación de Pearson de 0,82 lo que nos indica que ambos miden la misma destreza o característica ya que sabemos que existe una relación lineal entre el peso y el IMC. Por otra parte, la estatura y el IMC muestra una covarianza y correlación de 0, esto se debe a que la formula toma el cuadrado de la estatura y si la asociación entre los elementos no es lineal, entonces el coeficiente no se encuentra representado adecuadamente. 
+
+```{r}
+pairs.panels(datos_cuantitativos, 
+
+             density = FALSE, 
+
+             ellipses = FALSE, 
+
+             pch = 21, 
+
+             main = "Tabla de correlación", 
+
+             hist.col = "blue") 
+```
+
+<font size="3">
+En la gráfica podemos ver como aquellos valores de correlación negativa y positivo muestran datos próximos entre sí y que las rectas de regresión tienen una pendiente negativa y positiva, respectivamente. Mientras que en los casos donde el coeficiente de correlación es cercano a 0 se muestran datos más dispersos y no se puede formar bien una línea recta de regresión. 
+
+
+<font size="6">Capitulo 6
+
+<font size="5">6.Análisis Intervalos de Confianza
+
+<font size="3">
+
++ Para las siguientes variables se calculará los intervalos de confianza, con un nivel de 95% de confianza.  
+
++ Se obtendrán muestras aleatorias de tamaño 30.
+
+<font size="5">Codigo para calcular los Intervalos de Confianza
+```{r}
+intervaloConfianza <- function (muestra, nivelConfianza, z = T) { 
+
+  estadistico = 0 
+
+  media = mean(muestra, na.rm = T) 
+
+  significancia = (1 - (nivelConfianza/100))/2 
+
+  errorEstandar = sd(muestra, na.rm = T) / sqrt(length(muestra)) 
+
+   
+
+  if(z) { 
+
+    estadistico = qnorm(significancia, lower.tail = F) }  
+
+  else { 
+
+    estadistico = qt(significancia, lower.tail = F, length(muestra) - 1) } 
+
+   
+
+  c(media - (estadistico * errorEstandar), media + (estadistico * errorEstandar)) 
+
+} 
+```
+
+<font size="5">6.1.Consumo semanal promedio de gaseosas 
+
+```{r}
+set.seed(1) 
+muestra_gaseosas = sample(datos_estudiantes$Consumo_semanal_promedio_gaseosas,  
+
+                          size=30, replace = F) 
+
+media_gaseosas = mean(muestra_gaseosas, na.rm = T) 
+
+media_gaseosas 
+
+int_confianza_gaseosas = intervaloConfianza(muestra_gaseosas, 95, T) 
+
+int_confianza_gaseosas
+```
+
+<font size="3">
+
+**Conclusión**
+
+El consumo semanal promedio de gaseosas, de las personas del estudio esta entre 0.3512793 y 0.9418242 litros con un nivel de confianza de 95%.
+
+<font size="5">6.2.Porcentaje promedio de carbohidrato por comida
+
+```{r}
+set.seed(1) 
+muestra_agua = sample(datos_estudiantes$Consumo_promedio_semanal_agua,  
+
+                          size=30, replace = F) 
+
+media_agua = mean(muestra_agua, na.rm = T) 
+
+media_agua 
+
+int_confianza_agua = intervaloConfianza(muestra_agua, 95, T) 
+
+int_confianza_agua 
+```
+
+<font size="3">
+
+**Conclusión**
+
+El porcentaje promedio de carbohidrato por comida, de las personas del estudio esta entre 38.29449 y 44.29810 por ciento con un nivel de confianza de 95%.
+
+<font size="5">6.3.Consumo promedio semanal de agua
+
+```{r}
+set.seed(1) 
+muestra_agua = sample(datos_estudiantes$Consumo_promedio_semanal_agua,  
+                          size=30, replace = F) 
+
+media_agua = mean(muestra_agua, na.rm = T) 
+media_agua 
+int_confianza_agua = intervaloConfianza(muestra_agua, 95, T) 
+int_confianza_agua
+```
+
+<font size="3">
+
+**Conclusión**
+
+El consumo promedio semanal de agua, de las personas del estudio esta entre 10.88731 y 15.54603 litros con un nivel de confianza de 95% 
+
+<font size="5">6.4.IMC
+
+```{r}
+imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2) 
+datos_estudiantes$IMC = imc 
+set.seed(1) 
+muestra_imc = sample(datos_estudiantes$IMC,  
+                      size=30, replace = F) 
+media_imc = mean(muestra_imc, na.rm = T) 
+media_imc 
+int_confianza_imc = intervaloConfianza(muestra_imc, 95, T) 
+int_confianza_imc 
+```
+
+<font size="3">
+
+**Conclusión**
+
+El índice de masa corporal, de las personas del estudio esta entre los valores 22.79596 y 25.36702 con un nivel de confianza de 95%.
+
+
+<font size="6">Capitulo 7
+
+<font size="5">7.Analisis de Prueba de Hipotesis
+
+<font size="5">Codigo para la prueba de hipotesis de diferencia de medias
+
+```{r}
+tprueba2=function(me1,me2, difH0,var1,var2,n1, n2,tipo){ 
+  varc=((n1-1)*var1+(n2-1)*var2)/(n1+n2-2) 
+  z=((me1-me2)-difH0)/sqrt(varc*(1/n1+1/n2)) 
+  if(tipo=="mayor"){ 
+    p=pt(z,n1+n2-2,lower.tail=FALSE) 
+  } 
+  if(tipo=="menor"){ 
+    p=pt(z,n1+n2-2,lower.tail=TRUE) 
+  } 
+  if(tipo=="diferente"){ 
+    p=min((2*pt(z,n1+n2-2,lower.tail=FALSE)),(2*pt(z,n-1,lower.tail=TRUE))) 
+  } 
+  return(p) 
+} 
+```
+
+
+<font size="5">7.1.Consumo Promedio semanal de agua por episodios de ansiedad
+
+<font size="4">7.1.1Condiciones
+
+<font size="3">
+
++ La variable de consumo promedio semanal de agua proviene de una distribución normal.
+
++ El nivel de significancia para la prueba de hipótesis es de 5%. 
+
++ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
+
+<font size="4">7.1.2 Planteamiento de la hipótesis 
+
+<font size="3">
+
++ 1era muestra: Una muestra de 20 personas que tienen hasta 1 episodio de ansiedad por semana.
+
++ 2da muestra: Una muestra de 20 personas que tienen más de 2 episodios de ansiedad por semana. 
+
+-Hipótesis-
+
++ H0: media del consumo promedio semanal de agua de las personas que sufren hasta 1 episodio de ansiedad es menor o igual a la media de consumo promedio semanal de agua de las personas que tienen mas de 2 episodios de ansiedad 
+
++ H1: media del consumo promedio semanal de agua de las personas que sufren hasta 1 episodio de ansiedad es mayor a la media de consumo promedio semanal de agua de las personas que tienen más de 2 episodios de ansiedad 
+
+```{r}
+#Agua con Ansiedad 
+#A 95% nivel de confianza 
+#Diferencia de prom de consumo agua 
+set.seed(3) 
+ep_ansiedad = datos_estudiantes$Episodios_por_semana_ansiedad 
+#Muestra personas con 0-1 ep. ansiedad 
+muestra_agua1 = sample(datos_estudiantes$Consumo_promedio_semanal_agua 
+                       [ep_ansiedad==1], size = 20, replace = F) 
+media_muestra_agua1 = median(muestra_agua1, na.rm = T) 
+var_muestra1 = var(muestra_agua1, na.rm = T) 
+n_muestra1 = length(muestra_agua1) 
+#Muestra personas con mas de 2 ep. ansiedad 
+muestra_agua2 = sample(datos_estudiantes$Consumo_promedio_semanal_agua 
+                       [ep_ansiedad!=1], size = 20, replace = F) 
+media_muestra_agua2 = median(muestra_agua2, na.rm = T) 
+var_muestra2 = var(muestra_agua2, na.rm = T) 
+n_muestra2 = length(muestra_agua1) 
+valor_p = tprueba2(media_muestra_agua1, media_muestra_agua2,  
+            0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'mayor') 
+valor_p 
+```
+
+<font size="3">
+
+**Resultados: **
+
+Debido a que el valor de p es menor que al nivel de significancia se rechaza la hipótesis nula. Concluyendo que las personas que tienen hasta 1 episodio de ansiedad tienen un consumo promedio de agua mayor de las que tienen más de 2 episodios.
+
+<font size="5">7.2 Consumo Promedio semanal de gaseosa por episodios de ansiedad
+
+<font size="4">7.2.1 Condiciones 
+
+<font size="3">
+
++ La variable de consumo promedio semanal de gaseosa proviene de una distribución normal.
+
++ El nivel de significancia para la prueba de hipótesis es de 5%. 
+
++ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
+
+<font size="4">7.2.2 Planteamiento de la hipótesis 
+
+<font size="3">
+
++ 1era muestra: Una muestra de 20 personas que tienen hasta 3 episodios de ansiedad por semana. 
+
++ 2da muestra: Una muestra de 20 personas que tienen más de 4 episodios de ansiedad por semana. 
+
+-Hipótesis-
+
++ H0: media del consumo de gaseosas de las personas que sufren hasta 3 episodio de ansiedad es mayor o igual a la media de gaseosas de las personas que tienen más de 4 episodios de ansiedad. 
+
++ H1: media del consumo de gaseosas de las personas que sufren hasta 3 episodio de ansiedad es menor que la media de gaseosas de las personas que tienen más de 4 episodios de ansiedad. 
+
+```{r}
+#Gaseosa con Ansiedad 
+#A 95% nivel de confianza 
+#Diferencia de prom de consumo gaseosas 
+set.seed(3) 
+ep_ansiedad = datos_estudiantes$Episodios_por_semana_ansiedad 
+#Muestra personas con 0-3 ep. ansiedad 
+muestra_gaseosa1 = sample(datos_estudiantes$Consumo_semanal_promedio_gaseosas 
+                          [ep_ansiedad<=2], size = 20, replace = F) 
+media_muest_gaseosa1 = median(muestra_gaseosa1, na.rm = T) 
+var_muestra1 = var(muestra_gaseosa1, na.rm = T) 
+n_muestra1 = length(muestra_gaseosa1) 
+#Muestra personas con mas de 4 ep. ansiedad 
+muestra_gaseosa2 = sample(datos_estudiantes$Consumo_semanal_promedio_gaseosas 
+                          [ep_ansiedad>2], size = 20, replace = F) 
+media_muest_gaseosa2 = median(muestra_gaseosa2, na.rm = T) 
+var_muestra2 = var(muestra_gaseosa2, na.rm = T) 
+n_muestra2 = length(muestra_gaseosa2) 
+valor_p = tprueba2(media_muest_gaseosa1, media_muest_gaseosa2,  
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'menor') 
+valor_p 
+```
+
+<font size="3">
+
+**Resultados: **
+
+Debido a que el valor de p es menor que al nivel de significancia se rechaza la hipótesis nula en favor de la alterna. Concluyendo que las personas que tienen hasta 3 episodio de ansiedad tienen un consumo promedio de gaseosas menor que las que tienen más de 4 episodios de ansiedad.
+
+<font size="5">7.3 Porcentaje de Carbohidratos por episodios de ira
+
+<font size="4">7.3.1 Condiciones 
+
+<font size="3">
+
++ La variable de Porcentaje de Carbohidratos de agua proviene de una distribución normal. 
+
++ El nivel de significancia para la prueba de hipótesis es de 5%. 
+
++ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
+
+<font size="4">7.3.2 Planteamiento de la hipótesis 
+
+<font size="3">
+
++ 1era muestra: Una muestra de 20 personas que tienen hasta 1 episodio de ira por semana. 
+
++ 2da muestra: Una muestra de 20 personas que tienen 2 o más episodios de ansiedad por semana. 
+
+-Hipótesis-
+
++ H0: media del porcentaje de consumo de carbohidratos de las personas que tienen 1 episodio de ira es mayor o igual a la media del porcentaje de consumo de carbohidratos de las personas que tienen 2 o más episodios de ira. 
+
++ H1: media del porcentaje de consumo de carbohidratos de las personas que tienen 1 episodio de ira es menor a la media del porcentaje de consumo de carbohidratos de las personas que tienen 2 o más episodios de ira.
+
+```{r}
+#Carbohidratos por Ira 
+#A 95% nivel de confianza 
+#Diferencia de prom de consumo carbohid 
+set.seed(3) 
+ep_ira = datos_estudiantes$Episodios_por_semana_ira_frustacion 
+#Muestra personas con 0-1 ep. ira 
+muestra_ira1 = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida 
+                          [ep_ira==1], size = 20, replace = F) 
+media_muest_ira1 = median(muestra_ira1, na.rm = T) 
+var_muestra1 = var(muestra_ira1, na.rm = T) 
+n_muestra1 = length(muestra_ira1) 
+#Muestra personas con mas de 2 ep. de ira 
+muestra_ira2 = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida 
+                          [ep_ira>1], size = 20, replace = F) 
+media_muest_ira2 = median(muestra_ira2, na.rm = T) 
+var_muestra2 = var(muestra_ira2, na.rm = T) 
+n_muestra2 = length(muestra_ira2) 
+valor_p = tprueba2(media_muest_ira1, media_muest_ira2,  
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'menor') 
+valor_p 
+```
+
+<font size="3">
+
+**Resultados: **
+
+Debido a que el valor de p es mayor que el nivel de significancia se acepta la hipótesis nula. Concluyendo que las personas que tienen 1 episodio de ira tienen un consumo de carbohidratos mayor o igual que las personas que tienen 2 o más episodios de ira.
+
+<font size="5">7.4 IMC por episodios de tristeza 
+
+<font size="4">7.4.1 Condiciones 
+
+<font size="3">
+
++ La variable de índice de masa corporal (IMC) proviene de una distribución normal.
+
++ El nivel de significancia para la prueba de hipótesis es de 5%. 
+
++ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
+
+<font size="4">7.4.2 Planteamiento de la hipótesis
+
+<font size="3">
+
++ 1era muestra: Una muestra de 20 personas que tienen más de 2 episodios de tristeza por semana.
+
++ 2da muestra: Una muestra de 20 personas que tienen hasta 1 episodio de tristeza por semana. 
+
+-Hipótesis-
+
++ H0: media del IMC de las personas que tienen mas de 2 episodios de tristeza es menor o igual a la media del IMC de las personas que tienen hasta 1 episodio de tristeza. 
+
++ H1: media del IMC de las personas que tienen más de 2 episodios de tristeza es mayor a la media del IMC de las personas que tienen hasta 1 episodio de tristeza. 
+
+```{r}
+#IMC por tristeza 
+#A 95% nivel de confianza 
+imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2) 
+datos_estudiantes$IMC = imc 
+#Diferencia de IMC 
+set.seed(3) 
+ep_tristeza = datos_estudiantes$Episodios_por_semana_tristeza 
+#Muestra personas con mas de 2 ep tristeza 
+muestra_tristeza1 = sample(datos_estudiantes$IMC 
+                      [ep_tristeza>=2], size = 20, replace = F) 
+media_muest_tristeza1 = median(muestra_tristeza1, na.rm = T) 
+var_muestra1 = var(muestra_tristeza1, na.rm = T) 
+n_muestra1 = length(muestra_tristeza1) 
+#Muestra personas con 0-1 ep tristeza 
+muestra_tristeza2 = sample(datos_estudiantes$IMC 
+                           [ep_tristeza<2], size = 20, replace = F) 
+media_muest_tristeza2 = median(muestra_tristeza2, na.rm = T) 
+var_muestra2 = var(muestra_tristeza2, na.rm = T) 
+n_muestra2 = length(muestra_tristeza2) 
+valor_p = tprueba2(media_muest_tristeza1, media_muest_tristeza2,  
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'mayor') 
+valor_p 
+```
+
+<font size="3">
+
+**Resultados: **
+
+Debido a que el valor de p es mayor que el nivel de significancia se acepta la hipótesis nula. Concluyendo que las personas que tienen hasta 1 episodio de tristeza tienen un IMC menor o igual que las personas que tienen más de 2 episodios de tristeza. 
+
+
+<font size="5">7.5 Consumo Promedio semanal de agua por episodios de estrés
+
+<font size="4">7.5.1 Condiciones 
+
+<font size="3">
+
++ La variable de consumo promedio semanal de agua proviene de una distribución normal.
++ El nivel de significancia para la prueba de hipótesis es de 5%.
++ Se selecciono 2 muestras aleatorias ambas de tamaño 29.
+
+<font size="4">7.5.2 Planteamiento de la hipótesis
+
+<font size="3">
+
++ 1era muestra: Una muestra de 20 personas que tienen hasta 1 episodio de estrés por semana.
+
++ 2da muestra: Una muestra de 20 personas que tienen más de 2 episodios de estrés por semana. 
+
+-Hipótesis-
+
++ H0: media del consumo promedio semanal de agua de las personas que sufren hasta 1 episodio de estrés es menor o igual a la media de consumo promedio semanal de agua de las personas que tienen más de 2 episodios de estrés. 
+
++ H1: media del consumo promedio semanal de agua de las personas que sufren hasta 1 episodio de estrés es mayor a la media de consumo promedio semanal de agua de las personas que tienen más de 2 episodios de estrés.
+
+```{r}
+#Agua por Estres 
+#A 95% nivel de confianza 
+#Diferencia de agua 
+set.seed(3) 
+ep_estres = datos_estudiantes$Episodios_por_semana_estres 
+#Muestra personas con 0-1 ep estres 
+muestra_estres1 = sample(datos_estudiantes$Consumo_promedio_semanal_agua 
+
+                           [ep_estres==1], size = 20, replace = F) 
+media_muest_estres1 = median(muestra_estres1, na.rm = T) 
+var_muestra1 = var(muestra_estres1, na.rm = T) 
+n_muestra1 = length(muestra_estres1) 
+#Muestra personas con mas de 2 ep estres 
+muestra_estres2 = sample(datos_estudiantes$Consumo_promedio_semanal_agua 
+
+                         [ep_estres!=1], size = 20, replace = F) 
+media_muest_estres2 = median(muestra_estres2, na.rm = T) 
+var_muestra2 = var(muestra_estres2, na.rm = T) 
+n_muestra2 = length(muestra_estres2) 
+valor_p = tprueba2(media_muest_estres1, media_muest_estres2,  
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'mayor')
+valor_p 
+```
+
+<font size="3">
+
+**Resultados: **
+
+Debido a que el valor de p es menor que al nivel de significancia se rechaza la hipótesis nula. Concluyendo que las personas que tienen hasta 1 episodio de estrés tienen un consumo promedio de agua mayor de las que tienen más de 2 episodios de estrés. 
+
+<font size="5">7.6 Porcentaje de Carbohidratos por episodios de miedo
+
+<font size="4">7.6.1 Condiciones 
+
+<font size="3">
+
++ La variable de Porcentaje de Carbohidratos proviene de una distribución normal.
+
++ El nivel de significancia para la prueba de hipótesis es de 5%. 
+
++ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
+
+<font size="4">7.6.2 Planteamiento de la hipótesis 
+
+<font size="3">
+
++ 1era muestra: Una muestra de 20 personas que tienen hasta 1 episodio de miedo por semana.
+
++ 2da muestra: Una muestra de 20 personas que tienen 2 o más episodios de miedo por semana. 
+
+-Hipótesis-
+
++ H0: media del porcentaje de consumo de carbohidratos de las personas que tienen 1 episodio de miedo es mayor o igual a la media del porcentaje de consumo de carbohidratos de las personas que tienen 2 o más episodios de miedo. 
+
++ H1: media del porcentaje de consumo de carbohidratos de las personas que tienen 1 episodio de miedo es menor a la media del porcentaje de consumo de carbohidratos de las personas que tienen 2 o más episodios de miedo.
+
+```{r}
+#Carbohidratos por Miedo 
+#A 95% nivel de confianza 
+#Diferencia de carbohidratos 
+set.seed(3) 
+ep_miedo = datos_estudiantes$Episodios_por_semana_miedo 
+#Muestra personas con 0-1 ep miedo 
+muestra_miedo1 = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida 
+
+                         [ep_miedo==1], size = 20, replace = F) 
+
+media_muest_miedo1 = median(muestra_miedo1, na.rm = T) 
+var_muestra1 = var(muestra_miedo1, na.rm = T) 
+n_muestra1 = length(muestra_miedo1) 
+#Muestra personas con mas de 2 ep miedo 
+muestra_miedo2 = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida 
+
+                        [ep_miedo!=1], size = 20, replace = F) 
+media_muest_miedo2 = median(muestra_miedo2, na.rm = T) 
+var_muestra2 = var(muestra_miedo2, na.rm = T) 
+n_muestra2 = length(muestra_miedo2) 
+valor_p = tprueba2(media_muest_miedo1, media_muest_miedo2,  
+
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'menor') 
+valor_p 
+```
+
+<font size="3">
+
+**Resultados: **
+
+Debido a que el valor de p es mayor que el nivel de significancia se acepta la hipótesis nula. Concluyendo que las personas que tienen 1 episodio de miedo tienen un consumo de carbohidratos mayor o igual que las personas que tienen 2 o más episodios de ira 
+
+
+<font size="6"> Capitulo 9
+<font size="5">9.Regresión Lineal
+
+
+
+<font size="6">Capitulo 10
+<font size="5">10.Conclusión
+
+
 
