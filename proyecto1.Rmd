@@ -360,7 +360,7 @@ tprueba2=function(me1,me2, difH0,var1,var2,n1, n2,tipo){
 
 + El nivel de significancia para la prueba de hipótesis es de 5%. 
 
-+ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
++ Se selecciono 2 muestras aleatorias ambas de tamaño 20. 
 
 <font size="4">7.1.2 Planteamiento de la hipótesis 
 
@@ -415,7 +415,7 @@ Debido a que el valor de p es menor que al nivel de significancia se rechaza la 
 
 + El nivel de significancia para la prueba de hipótesis es de 5%. 
 
-+ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
++ Se selecciono 2 muestras aleatorias ambas de tamaño 20. 
 
 <font size="4">7.2.2 Planteamiento de la hipótesis 
 
@@ -466,11 +466,11 @@ Debido a que el valor de p es menor que al nivel de significancia se rechaza la 
 
 <font size="3">
 
-+ La variable de Porcentaje de Carbohidratos de agua proviene de una distribución normal. 
++ La variable de Porcentaje de Carbohidratos por comida proviene de una distribución normal. 
 
 + El nivel de significancia para la prueba de hipótesis es de 5%. 
 
-+ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
++ Se selecciono 2 muestras aleatorias ambas de tamaño 20. 
 
 <font size="4">7.3.2 Planteamiento de la hipótesis 
 
@@ -525,7 +525,7 @@ Debido a que el valor de p es mayor que el nivel de significancia se acepta la h
 
 + El nivel de significancia para la prueba de hipótesis es de 5%. 
 
-+ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
++ Se selecciono 2 muestras aleatorias ambas de tamaño 20. 
 
 <font size="4">7.4.2 Planteamiento de la hipótesis
 
@@ -580,8 +580,10 @@ Debido a que el valor de p es mayor que el nivel de significancia se acepta la h
 <font size="3">
 
 + La variable de consumo promedio semanal de agua proviene de una distribución normal.
+
 + El nivel de significancia para la prueba de hipótesis es de 5%.
-+ Se selecciono 2 muestras aleatorias ambas de tamaño 29.
+
++ Se selecciono 2 muestras aleatorias ambas de tamaño 20.
 
 <font size="4">7.5.2 Planteamiento de la hipótesis
 
@@ -634,11 +636,11 @@ Debido a que el valor de p es menor que al nivel de significancia se rechaza la 
 
 <font size="3">
 
-+ La variable de Porcentaje de Carbohidratos proviene de una distribución normal.
++ La variable de Porcentaje de Carbohidratos por comida proviene de una distribución normal.
 
 + El nivel de significancia para la prueba de hipótesis es de 5%. 
 
-+ Se selecciono 2 muestras aleatorias ambas de tamaño 29. 
++ Se selecciono 2 muestras aleatorias ambas de tamaño 20. 
 
 <font size="4">7.6.2 Planteamiento de la hipótesis 
 
