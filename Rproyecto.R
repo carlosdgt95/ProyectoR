@@ -711,3 +711,4 @@ summary(regresion)
 plot(icm, datos_estudiantes$Estatura, xlab='icm', ylab='estatura')
 abline(regresion)
 
+####
