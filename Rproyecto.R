@@ -4,7 +4,7 @@
 
 library(readxl)
 library(agricolae)
-datos_estudiantes <- read_excel("C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx")
+datos_estudiantes <- read_excel("C:/Users/Carlos Gomez/Desktop/proyectogitestaditicaFinal/ProyectoR/datos_estudiantes.xlsx")
 datos_estudiantes
 
 #cualitativas tablas
@@ -127,7 +127,7 @@ tabla_freq_relativa_tristeza
 #Diagrama de barras de Tristeza
 
 colores_diag_tristeza = palette("Alphabet")
-diagrama_tristeza = barplot(tablaf_tristeza, main=" Diagrama Episodios Semanales de Estres" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col=colores_diag_tristeza)
+diagrama_tristeza = barplot(tablaf_tristeza, main=" Diagrama Episodios Semanales de Tristeza" , xlab="Numero Episodios", ylab = 'Casos',names.arg = c("0-1","2-3","4-5","5+"),col=colores_diag_tristeza)
 
 #Diagrama circular de Tristeza
 etiqueta_diag_triteza = paste(round(tabla_freq_relativa_tristeza*100, 2), '%', sep=' ')
@@ -318,7 +318,7 @@ q = c(0.05,0.12,0.55,0.75,0.95) ##datos para grafico
 quartil_IMC = quantile(IMC, probs = c(0.05,0.12,0.55,0.75,0.95),na.rm = T)
 quartil_IMC
 
-plot(quartil_IMC, q, main = "Ojiva Peso", xlab = "Puntaje", ylab = "Frecuencia Relativa")
+plot(quartil_IMC, q, main = "Ojiva ICM", xlab = "Puntaje", ylab = "Frecuencia Relativa")
 lines(quartil_IMC, q, type="l", col="brown")
 
 #cajas de textos
@@ -674,4 +674,40 @@ int_confianza_imc
 
 ##############################################################
 #Prueba de Hipotesis
+
+##
+#grafico de dispercion
+
+
+
+pairs(~ datos_estudiantes$Peso + 
+        datos_estudiantes$Estatura +
+        datos_estudiantes$Consumo_promedio_semanal_agua +
+        datos_estudiantes$Consumo_semanal_promedio_gaseosas +
+        datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida +
+        icm, data = df)
+#pesovsicm #Estecumple
+
+regresion <- lm(icm ~ datos_estudiantes$Peso, data.frame(icm) )
+summary(regresion)
+
+plot(datos_estudiantes$Peso, icm, xlab='Peso', ylab='Icm')
+abline(regresion)
+#PEsovsestatura# este cumple
+
+regresion1 <- lm( datos_estudiantes$Peso ~ datos_estudiantes$Estatura 
+                 , data= datos_estudiantes )
+summary(regresion1)
+
+
+plot( datos_estudiantes$Estatura, datos_estudiantes$Peso, xlab='Estatura', ylab='Peso')
+abline(regresion1)
+
+#icmvsesatura
+
+regresion <- lm(datos_estudiantes$Estatura ~icm , data=datos_estudiantes )
+summary(regresion)
+
+plot(icm, datos_estudiantes$Estatura, xlab='icm', ylab='estatura')
+abline(regresion)
 
