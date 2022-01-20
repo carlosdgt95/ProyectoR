@@ -893,7 +893,7 @@ abline(regresion)
 #PEsovsestatura# este cumple
 
 regresion1 <- lm( datos_estudiantes$Peso ~ datos_estudiantes$Estatura 
-                 , data= datos_estudiantes )
+                  , data= datos_estudiantes )
 summary(regresion1)
 
 
@@ -908,4 +908,3 @@ summary(regresion)
 
 plot(IMC, datos_estudiantes$Estatura, xlab='icm', ylab='estatura')
 abline(regresion)
-
