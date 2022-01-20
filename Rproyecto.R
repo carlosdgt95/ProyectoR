@@ -685,13 +685,13 @@ pairs(~ datos_estudiantes$Peso +
         datos_estudiantes$Consumo_promedio_semanal_agua +
         datos_estudiantes$Consumo_semanal_promedio_gaseosas +
         datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida +
-        icm, data = df)
+        IMC, data = datos_estudiantes)
 #pesovsicm #Estecumple
 
-regresion <- lm(icm ~ datos_estudiantes$Peso, data.frame(icm) )
+regresion <- lm(IMC ~ datos_estudiantes$Peso, data.frame(IMC) )
 summary(regresion)
 
-plot(datos_estudiantes$Peso, icm, xlab='Peso', ylab='Icm')
+plot(datos_estudiantes$Peso, IMC, xlab='Peso', ylab='IMC')
 abline(regresion)
 #PEsovsestatura# este cumple
 
@@ -703,12 +703,12 @@ summary(regresion1)
 plot( datos_estudiantes$Estatura, datos_estudiantes$Peso, xlab='Estatura', ylab='Peso')
 abline(regresion1)
 
-#icmvsesatura
+#icmvsesatura #no cumple
+IMC
 
-regresion <- lm(datos_estudiantes$Estatura ~icm , data=datos_estudiantes )
+regresion <- lm(datos_estudiantes$Estatura ~ IMC , data=datos_estudiantes )
 summary(regresion)
 
-plot(icm, datos_estudiantes$Estatura, xlab='icm', ylab='estatura')
+plot(IMC, datos_estudiantes$Estatura, xlab='icm', ylab='estatura')
 abline(regresion)
 
-####
