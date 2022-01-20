@@ -673,9 +673,206 @@ int_confianza_imc = intervaloConfianza(muestra_imc, 95, T)
 int_confianza_imc
 
 ##############################################################
+##############################################################
+#Prueba de Hipotesis para la diferencia de medias de muestras pequeñas
+
+tprueba2=function(me1,me2, difH0,var1,var2,n1, n2,tipo){
+  varc=((n1-1)*var1+(n2-1)*var2)/(n1+n2-2)
+  z=((me1-me2)-difH0)/sqrt(varc*(1/n1+1/n2))
+  if(tipo=="mayor"){
+    p=pt(z,n1+n2-2,lower.tail=FALSE)
+  }
+  if(tipo=="menor"){
+    p=pt(z,n1+n2-2,lower.tail=TRUE)
+  }
+  if(tipo=="diferente"){
+    p=min((2*pt(z,n1+n2-2,lower.tail=FALSE)),(2*pt(z,n-1,lower.tail=TRUE)))
+  }
+  return(p)
+}
+
+##############################################################
 #Prueba de Hipotesis
 
-##
+################################################################################
+#Agua con Ansiedad
+#A 95% nivel de confianza
+#Diferencia de prom de consumo agua
+
+set.seed(3)
+ep_ansiedad = datos_estudiantes$Episodios_por_semana_ansiedad
+
+#Muestra personas con 0-1 ep. ansiedad
+muestra_agua1 = sample(datos_estudiantes$Consumo_promedio_semanal_agua
+                       [ep_ansiedad==1], size = 20, replace = F)
+
+media_muestra_agua1 = median(muestra_agua1, na.rm = T)
+var_muestra1 = var(muestra_agua1, na.rm = T)
+n_muestra1 = length(muestra_agua1)
+
+#Muestra personas con mas de 2 ep. ansiedad
+muestra_agua2 = sample(datos_estudiantes$Consumo_promedio_semanal_agua
+                       [ep_ansiedad!=1], size = 20, replace = F)
+
+media_muestra_agua2 = median(muestra_agua2, na.rm = T)
+var_muestra2 = var(muestra_agua2, na.rm = T)
+n_muestra2 = length(muestra_agua1)
+
+valor_p = tprueba2(media_muestra_agua1, media_muestra_agua2, 
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'mayor')
+valor_p
+
+
+################################################################################
+#Gaseosa con Ansiedad
+#A 95% nivel de confianza
+#Diferencia de prom de consumo gaseosas
+set.seed(3)
+ep_ansiedad = datos_estudiantes$Episodios_por_semana_ansiedad
+
+#Muestra personas con 0-3 ep. ansiedad
+muestra_gaseosa1 = sample(datos_estudiantes$Consumo_semanal_promedio_gaseosas
+                          [ep_ansiedad<=2], size = 20, replace = F)
+
+media_muest_gaseosa1 = median(muestra_gaseosa1, na.rm = T)
+var_muestra1 = var(muestra_gaseosa1, na.rm = T)
+n_muestra1 = length(muestra_gaseosa1)
+
+#Muestra personas con mas de 4 ep. ansiedad
+muestra_gaseosa2 = sample(datos_estudiantes$Consumo_semanal_promedio_gaseosas
+                          [ep_ansiedad>2], size = 20, replace = F)
+
+media_muest_gaseosa2 = median(muestra_gaseosa2, na.rm = T)
+var_muestra2 = var(muestra_gaseosa2, na.rm = T)
+n_muestra2 = length(muestra_gaseosa2)
+
+valor_p = tprueba2(media_muest_gaseosa1, media_muest_gaseosa2, 
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'menor')
+valor_p
+
+
+################################################################################
+#Carbohidratos por Ira
+#A 95% nivel de confianza
+#Diferencia de prom de consumo carbohid
+set.seed(3)
+ep_ira = datos_estudiantes$Episodios_por_semana_ira_frustacion
+
+#Muestra personas con 0-1 ep. ira
+muestra_ira1 = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida
+                      [ep_ira==1], size = 20, replace = F)
+
+media_muest_ira1 = median(muestra_ira1, na.rm = T)
+var_muestra1 = var(muestra_ira1, na.rm = T)
+n_muestra1 = length(muestra_ira1)
+
+#Muestra personas con mas de 2 ep. de ira
+muestra_ira2 = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida
+                      [ep_ira>1], size = 20, replace = F)
+
+media_muest_ira2 = median(muestra_ira2, na.rm = T)
+var_muestra2 = var(muestra_ira2, na.rm = T)
+n_muestra2 = length(muestra_ira2)
+
+valor_p = tprueba2(media_muest_ira1, media_muest_ira2, 
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'menor')
+valor_p
+
+################################################################################
+#IMC por tristeza
+#A 95% nivel de confianza
+
+imc = (datos_estudiantes$Peso/2.2)/(datos_estudiantes$Estatura**2)
+datos_estudiantes$IMC = imc
+
+
+#Diferencia de IMC
+set.seed(3)
+ep_tristeza = datos_estudiantes$Episodios_por_semana_tristeza
+
+#Muestra personas con mas de 2 ep tristeza
+muestra_tristeza1 = sample(datos_estudiantes$IMC
+                           [ep_tristeza>=2], size = 20, replace = F)
+
+media_muest_tristeza1 = median(muestra_tristeza1, na.rm = T)
+var_muestra1 = var(muestra_tristeza1, na.rm = T)
+n_muestra1 = length(muestra_tristeza1)
+
+#Muestra personas con 0-1 ep tristeza
+muestra_tristeza2 = sample(datos_estudiantes$IMC
+                           [ep_tristeza<2], size = 20, replace = F)
+
+media_muest_tristeza2 = median(muestra_tristeza2, na.rm = T)
+var_muestra2 = var(muestra_tristeza2, na.rm = T)
+n_muestra2 = length(muestra_tristeza2)
+
+valor_p = tprueba2(media_muest_tristeza1, media_muest_tristeza2, 
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'mayor')
+valor_p
+
+
+################################################################################
+#Agua por Estres
+#A 95% nivel de confianza
+
+#Diferencia de agua
+set.seed(3)
+ep_estres = datos_estudiantes$Episodios_por_semana_estres
+
+#Muestra personas con 0-1 ep estres
+muestra_estres1 = sample(datos_estudiantes$Consumo_promedio_semanal_agua
+                         [ep_estres==1], size = 20, replace = F)
+
+media_muest_estres1 = median(muestra_estres1, na.rm = T)
+var_muestra1 = var(muestra_estres1, na.rm = T)
+n_muestra1 = length(muestra_estres1)
+
+#Muestra personas con mas de 2 ep estres
+muestra_estres2 = sample(datos_estudiantes$Consumo_promedio_semanal_agua
+                         [ep_estres!=1], size = 20, replace = F)
+
+media_muest_estres2 = median(muestra_estres2, na.rm = T)
+var_muestra2 = var(muestra_estres2, na.rm = T)
+n_muestra2 = length(muestra_estres2)
+
+valor_p = tprueba2(media_muest_estres1, media_muest_estres2, 
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'mayor')
+valor_p
+
+
+################################################################################
+#Carbohidratos por Miedo
+#A 95% nivel de confianza
+
+#Diferencia de carbohidratos
+set.seed(3)
+ep_miedo = datos_estudiantes$Episodios_por_semana_miedo
+
+#Muestra personas con 0-1 ep miedo
+muestra_miedo1 = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida
+                        [ep_miedo==1], size = 20, replace = F)
+
+media_muest_miedo1 = median(muestra_miedo1, na.rm = T)
+var_muestra1 = var(muestra_miedo1, na.rm = T)
+n_muestra1 = length(muestra_miedo1)
+
+#Muestra personas con mas de 2 ep miedo
+muestra_miedo2 = sample(datos_estudiantes$Porcentaje_promedio_carbohidrato_por_comida
+                        [ep_miedo!=1], size = 20, replace = F)
+
+media_muest_miedo2 = median(muestra_miedo2, na.rm = T)
+var_muestra2 = var(muestra_miedo2, na.rm = T)
+n_muestra2 = length(muestra_miedo2)
+
+valor_p = tprueba2(media_muest_miedo1, media_muest_miedo2, 
+                   0, var_muestra1, var_muestra2, n_muestra1, n_muestra2, 'menor')
+valor_p
+
+
+
+
+##############################################################
+##############################################################
 #grafico de dispercion
 
 
