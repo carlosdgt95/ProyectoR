@@ -4,7 +4,7 @@
 
 library(readxl)
 library(agricolae)
-datos_estudiantes <- read_excel("C:/Users/Carlos Gomez/Desktop/proyectogitestaditicaFinal/ProyectoR/datos_estudiantes.xlsx")
+datos_estudiantes <- read_excel("C:/Users/Sebastian/Documents/Proyecto/Estadistica/ProyectoR/datos_estudiantes.xlsx")
 datos_estudiantes
 
 #cualitativas tablas
@@ -161,13 +161,13 @@ names(tabla_peso)=c("Límite inferior de clase","Límite superior de clase","Marca
 tabla_peso
 
 #media del peso
-media=mean(is.na(peso))
+media=mean(peso, na.rm = T)
 
 #mediana del peso
-mediana=median(is.na(peso))
+mediana=median(peso, na.rm = T)
 
 #desviacion del peso
-desviacion=sd(is.na(peso))
+desviacion=sd(peso, na.rm = T)
 
 #Cuartiles del peso
 q1=quantile(peso,c(0.25),na.rm=TRUE)[1]
@@ -875,7 +875,7 @@ valor_p
 ##############################################################
 #grafico de dispercion
 
-
+IMC = datos_estudiantes$IMC
 
 pairs(~ datos_estudiantes$Peso + 
         datos_estudiantes$Estatura +
@@ -897,7 +897,8 @@ regresion1 <- lm( datos_estudiantes$Peso ~ datos_estudiantes$Estatura
 summary(regresion1)
 
 
-plot( datos_estudiantes$Estatura, datos_estudiantes$Peso, xlab='Estatura', ylab='Peso')
+plot( datos_estudiantes$Estatura, datos_estudiantes$Peso, 
+      xlab='Estatura', ylab='Peso')
 abline(regresion1)
 
 #icmvsesatura #no cumple
@@ -908,3 +909,4 @@ summary(regresion)
 
 plot(IMC, datos_estudiantes$Estatura, xlab='icm', ylab='estatura')
 abline(regresion)
+

@@ -570,7 +570,7 @@ valor_p
 
 **Resultados: **
 
-Debido a que el valor de p es mayor que el nivel de significancia se acepta la hipótesis nula. Concluyendo que las personas que tienen hasta 1 episodio de tristeza tienen un IMC menor o igual que las personas que tienen más de 2 episodios de tristeza. 
+Debido a que el valor de p es mayor que el nivel de significancia se acepta la hipótesis nula. Concluyendo que las personas que tienen mas de 2 episodios de tristeza tienen un IMC menor o igual que las personas que tienen hasta 1 episodio de tristeza.
 
 
 <font size="5">7.5 Consumo Promedio semanal de agua por episodios de estrés
